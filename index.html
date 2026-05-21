@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rise Baseball Co. — Player Development Programs</title>
+<title>Rise Baseball Co. — Coaches Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --green: #5DC226;
+  --green-dark: #3d8a18;
   --black: #080808;
   --card: #111111;
   --card2: #161616;
@@ -16,11 +17,122 @@
   --white: #ffffff;
   --off-white: #cccccc;
   --dim: #666666;
+  --gold: #c8960a;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { background:var(--black); color:var(--white); font-family:'Barlow',sans-serif; min-height:100vh; }
 
+/* ── LOGIN SCREEN ── */
+.login-screen {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:24px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1a0a 50%, #080808 100%);
+}
+.login-logo-area {
+  text-align:center;
+  margin-bottom:40px;
+}
+.login-brand {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:38px;
+  color:var(--white);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  line-height:1;
+}
+.login-brand span { color:var(--green); }
+.login-divider { width:50px; height:4px; background:var(--green); margin:14px auto; }
+.login-sub {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:12px;
+  color:var(--dim);
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+}
+.login-box {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:3px solid var(--green);
+  padding:32px 36px;
+  width:100%;
+  max-width:360px;
+}
+.login-box-title {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:18px;
+  color:var(--white);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.login-box-sub {
+  font-size:13px;
+  color:var(--dim);
+  margin-bottom:24px;
+  line-height:1.4;
+}
+.login-label {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--dim);
+  display:block;
+  margin-bottom:8px;
+}
+.login-input {
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid var(--border2);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  font-size:16px;
+  padding:12px 14px;
+  outline:none;
+  margin-bottom:16px;
+  transition:border-color 0.15s;
+}
+.login-input:focus { border-color:var(--green); }
+.login-btn {
+  width:100%;
+  background:var(--green);
+  color:var(--black);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:16px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  border:none;
+  padding:14px;
+  cursor:pointer;
+  transition:background 0.15s;
+}
+.login-btn:hover { background:var(--green-dark); color:var(--white); }
+.login-error {
+  color:#c0392b;
+  font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-top:12px;
+  text-align:center;
+  display:none;
+}
+
+/* ── PORTAL (hidden until logged in) ── */
+.portal { display:none; }
+
+/* ── HEADER ── */
 .site-header {
   background:var(--black);
   border-bottom:3px solid var(--green);
@@ -31,6 +143,10 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
   position:sticky;
   top:0;
   z-index:200;
+}
+.header-brand {
+  display:flex;
+  flex-direction:column;
 }
 .header-name {
   font-family:'Barlow Condensed',sans-serif;
@@ -45,22 +161,37 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
 .header-sub {
   font-family:'Barlow Condensed',sans-serif;
   font-weight:600;
-  font-size:13px;
+  font-size:11px;
   color:var(--dim);
-  letter-spacing:0.16em;
+  letter-spacing:0.18em;
   text-transform:uppercase;
   margin-top:3px;
 }
+.logout-btn {
+  background:none;
+  border:1px solid var(--border2);
+  color:var(--dim);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  padding:7px 14px;
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.logout-btn:hover { border-color:var(--green); color:var(--green); }
 
+/* ── HERO ── */
 .hero {
   background: linear-gradient(135deg, #0a0a0a 0%, #0f1a0a 50%, #080808 100%);
   border-bottom:1px solid var(--border);
-  padding:48px 40px 40px;
+  padding:40px 40px 32px;
 }
 .hero-title {
   font-family:'Barlow Condensed',sans-serif;
   font-weight:900;
-  font-size:52px;
+  font-size:48px;
   color:var(--white);
   letter-spacing:0.04em;
   text-transform:uppercase;
@@ -71,13 +202,15 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
 .hero-sub {
   font-family:'Barlow Condensed',sans-serif;
   font-weight:600;
-  font-size:16px;
+  font-size:15px;
   color:var(--dim);
   letter-spacing:0.14em;
   text-transform:uppercase;
 }
 
-.section { padding:40px 40px; }
+/* ── SECTIONS ── */
+.section { padding:36px 40px; border-bottom:1px solid var(--border); }
+.section:last-child { border-bottom:none; }
 .section-title {
   font-family:'Barlow Condensed',sans-serif;
   font-weight:900;
@@ -85,24 +218,27 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
   letter-spacing:0.22em;
   text-transform:uppercase;
   color:var(--green);
-  margin-bottom:24px;
+  margin-bottom:20px;
   display:flex;
   align-items:center;
   gap:10px;
 }
 .section-title::after { content:''; flex:1; height:1px; background:var(--border2); }
+.section-title.gold { color:var(--gold); }
+.section-title.gold::after { background:var(--border2); }
+.section-title.blue { color:#4a9eda; }
 
+/* ── PROGRAM GRID ── */
 .programs-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:14px;
 }
-
 .program-card {
   background:var(--card);
   border:1px solid var(--border);
   border-top:3px solid var(--green);
-  padding:22px 24px;
+  padding:20px 22px;
   text-decoration:none;
   display:block;
   transition:border-color 0.15s, background 0.15s;
@@ -110,8 +246,12 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
 .program-card:hover {
   background:var(--card2);
   border-color:var(--green);
-  border-top-color:var(--green);
 }
+.program-card.gold-card { border-top-color:var(--gold); }
+.program-card.gold-card:hover { border-color:var(--gold); }
+.program-card.blue-card { border-top-color:#4a9eda; }
+.program-card.blue-card:hover { border-color:#4a9eda; }
+
 .program-card-name {
   font-family:'Barlow Condensed',sans-serif;
   font-weight:900;
@@ -128,34 +268,26 @@ body { background:var(--black); color:var(--white); font-family:'Barlow',sans-se
   letter-spacing:0.18em;
   text-transform:uppercase;
   color:var(--green);
-  margin-top:6px;
+  margin-top:5px;
 }
-.program-card-desc {
-  font-size:13px;
-  color:var(--dim);
-  margin-top:12px;
-  line-height:1.5;
-}
+.program-card.gold-card .program-card-label { color:var(--gold); }
+.program-card.blue-card .program-card-label { color:#4a9eda; }
+
 .program-card-arrow {
-  font-size:20px;
+  font-size:18px;
   color:var(--green);
-  margin-top:16px;
+  margin-top:14px;
   display:block;
 }
-
-.base-card {
-  border-top-color:#c8960a;
-}
-.base-card .program-card-label { color:#c8960a; }
-.base-card .program-card-arrow { color:#c8960a; }
-.base-card:hover { border-color:#c8960a; }
+.program-card.gold-card .program-card-arrow { color:var(--gold); }
+.program-card.blue-card .program-card-arrow { color:#4a9eda; }
 
 footer {
   border-top:1px solid var(--border);
-  padding:24px 40px;
+  padding:22px 40px;
   text-align:center;
   font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;
+  font-size:12px;
   color:var(--dim);
   letter-spacing:0.1em;
   text-transform:uppercase;
@@ -165,92 +297,154 @@ footer span { color:var(--green); }
 </head>
 <body>
 
-<header class="site-header">
-  <div>
-    <div class="header-name">Rise <span>Baseball</span> Co.</div>
-    <div class="header-sub">Player Development</div>
+<!-- ══ LOGIN SCREEN ══ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-logo-area">
+    <div class="login-brand">Rise <span>Baseball</span> Co.</div>
+    <div class="login-divider"></div>
+    <div class="login-sub">Coaches Portal</div>
   </div>
-</header>
-
-<div class="hero">
-  <div class="hero-title">Player <span>Development</span><br>Programs</div>
-  <div class="hero-divider"></div>
-  <div class="hero-sub">Rise Baseball Co. — Individual Training Programs</div>
-</div>
-
-<div class="section">
-  <div class="section-title">Base Program</div>
-  <div class="programs-grid">
-
-    <a class="program-card base-card" href="rise_base_program_interactive.html">
-      <div class="program-card-name">Rise Base Program</div>
-      <div class="program-card-label">Foundation · All Players</div>
-      <div class="program-card-desc">The standard Rise Baseball development template covering throwing, lifting, and recovery protocols.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
+  <div class="login-box">
+    <div class="login-box-title">Staff Access Only</div>
+    <div class="login-box-sub">Enter your coaches access code to view player programs.</div>
+    <label class="login-label" for="pwInput">Access Code</label>
+    <input class="login-input" type="password" id="pwInput" placeholder="Enter code..." onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Enter Portal</button>
+    <div class="login-error" id="loginError">Incorrect access code. Try again.</div>
   </div>
 </div>
 
-<div class="section" style="padding-top:0;">
-  <div class="section-title">Individual Programs</div>
-  <div class="programs-grid">
+<!-- ══ COACHES PORTAL ══ -->
+<div class="portal" id="portal">
 
-    <a class="program-card" href="braxton_cain_program_1.html">
-      <div class="program-card-name">Braxton Cain</div>
-      <div class="program-card-label">Program 1</div>
-      <div class="program-card-desc">Individual player development program — Phase 1 &amp; Phase 2 training blocks.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
+  <header class="site-header">
+    <div class="header-brand">
+      <div class="header-name">Rise <span>Baseball</span> Co.</div>
+      <div class="header-sub">Coaches Portal</div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Log Out</button>
+  </header>
 
-    <a class="program-card" href="riley_campbell_program.html">
-      <div class="program-card-name">Riley Campbell</div>
-      <div class="program-card-label">Player Program</div>
-      <div class="program-card-desc">Individual player development program — Phase 1 &amp; Phase 2 training blocks.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
-    <a class="program-card" href="bo_moxley_program_2.html">
-      <div class="program-card-name">Bo Moxley</div>
-      <div class="program-card-label">Program 2</div>
-      <div class="program-card-desc">Individual player development program — Phase 1 &amp; Phase 2 training blocks.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
-    <a class="program-card" href="9 week Kirkpatrick program.html">
-      <div class="program-card-name">John Kirkpatrick</div>
-      <div class="program-card-label">9-Week Program</div>
-      <div class="program-card-desc">9-week structured development program with full week-by-week training breakdown.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
-    <a class="program-card" href="tony_lopez_program_1.html">
-      <div class="program-card-name">Tony Lopez</div>
-      <div class="program-card-label">Program 1</div>
-      <div class="program-card-desc">Individual player development program with lifting, throwing, and recovery protocols.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
-    <a class="program-card" href="Preston_Fox_Player_Development_1.html">
-      <div class="program-card-name">Preston Fox</div>
-      <div class="program-card-label">Player Development 1</div>
-      <div class="program-card-desc">Individual player development program with full training schedule and exercise breakdowns.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
-    <a class="program-card" href="zaifuddin_graves_program_5.html">
-      <div class="program-card-name">Zae Graves</div>
-      <div class="program-card-label">Program 5</div>
-      <div class="program-card-desc">Individual player development program — Phase 1 &amp; Phase 2 training blocks.</div>
-      <span class="program-card-arrow">→</span>
-    </a>
-
+  <div class="hero">
+    <div class="hero-title">Coaches <span>Portal</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-sub">Rise Baseball Co. — Player Development Programs</div>
   </div>
-</div>
 
-<footer>
-  <span>Rise Baseball Co.</span> — Player Development Programs
-</footer>
+  <!-- BASE PROGRAM -->
+  <div class="section">
+    <div class="section-title">Base Program</div>
+    <div class="programs-grid">
+      <a class="program-card" href="rise_base_program_interactive.html">
+        <div class="program-card-name">Rise Base Program</div>
+        <div class="program-card-label">Foundation · All Players</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- COLLEGE -->
+  <div class="section">
+    <div class="section-title">College</div>
+    <div class="programs-grid">
+
+      <a class="program-card" href="riley_campbell_program.html">
+        <div class="program-card-name">Riley Campbell</div>
+        <div class="program-card-label">Player Program</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+      <a class="program-card" href="bo_moxley_program_2.html">
+        <div class="program-card-name">Bo Moxley</div>
+        <div class="program-card-label">Program 2</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+      <a class="program-card" href="9 week Kirkpatrick program.html">
+        <div class="program-card-name">John Kirkpatrick</div>
+        <div class="program-card-label">9-Week Program</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+      <a class="program-card" href="tony_lopez_program_1.html">
+        <div class="program-card-name">Tony Lopez</div>
+        <div class="program-card-label">Program 1</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+      <a class="program-card" href="zaifuddin_graves_program_5.html">
+        <div class="program-card-name">Zae Graves</div>
+        <div class="program-card-label">Program 5</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- HIGH SCHOOL -->
+  <div class="section">
+    <div class="section-title gold">High School</div>
+    <div class="programs-grid">
+
+      <a class="program-card gold-card" href="Preston_Fox_Player_Development_1.html">
+        <div class="program-card-name">Preston Fox</div>
+        <div class="program-card-label">Player Development 1</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ONLINE -->
+  <div class="section">
+    <div class="section-title blue">Online</div>
+    <div class="programs-grid">
+
+      <a class="program-card blue-card" href="braxton_cain_program_1.html">
+        <div class="program-card-name">Braxton Cain</div>
+        <div class="program-card-label">Program 1</div>
+        <span class="program-card-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <span>Rise Baseball Co.</span> — Coaches Portal · Staff Access Only
+  </footer>
+
+</div><!-- end portal -->
+
+<script>
+const PASS = 'RB26!';
+
+function login() {
+  const val = document.getElementById('pwInput').value;
+  if (val === PASS) {
+    sessionStorage.setItem('rbAuth', '1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('portal').style.display = 'block';
+    document.getElementById('loginError').style.display = 'none';
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('rbAuth');
+  document.getElementById('portal').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('pwInput').value = '';
+}
+
+// Stay logged in if already authenticated this session
+if (sessionStorage.getItem('rbAuth') === '1') {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('portal').style.display = 'block';
+}
+</script>
 
 </body>
 </html>
