@@ -518,7 +518,8 @@ armcare_b:{tag:"Arm Care — B Day",title:"Arm Care B — Friday",arm:true,body:
 
 // ── PHASE 1 LIFTS ─────────────────────────────────────────────────────────────
 p1_mon:{tag:"Phase 1 · Lower A",title:"Monday — Lower A",arm:false,body:`
-  ${pill("Isometric — hold quality over load")}
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Hold quality over load — position and tension are the stimulus")}
   ${sec("Primer",
     ex("Medball Hip Toss","2x4",["Hip extension into the toss — load the glute, not the back","Full hip drive — arm follows"])
     +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full hip extension — squeeze push leg glute","Hold the full 5s · neutral spine"])
@@ -537,7 +538,8 @@ p1_mon:{tag:"Phase 1 · Lower A",title:"Monday — Lower A",arm:false,body:`
 `},
 
 p1_tue:{tag:"Phase 1 · Upper A + Throw",title:"Tuesday — Upper A + Throw",arm:false,body:`
-  ${pill("Lift before throwing. Arm Care A after.")}
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing · Arm Care A after the session")}
   ${sec("Primer",
     ex("Medball Chest Pass","2x4",["Full intent — lower half connects","Arm follows the body"])
     +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top","Feel the t-spine opening on each rep"])
@@ -554,7 +556,8 @@ p1_tue:{tag:"Phase 1 · Upper A + Throw",title:"Tuesday — Upper A + Throw",arm
 `},
 
 p1_thu:{tag:"Phase 1 · Lower B",title:"Thursday — Lower B",arm:false,body:`
-  ${pill("Isometric lower — frontal plane emphasis.")}
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Frontal plane emphasis — lateral load and hip stability")}
   ${sec("Primer",
     ex("SL Medball Slam","2x3e",["Single leg — load the hip, slam with intention","Stick the landing — control before going again"])
     +ex("Banded Marches","2x10",["Tuck pelvis — ribcage down","Drive the knee up — don't let the band rotate the pelvis"])
@@ -573,7 +576,8 @@ p1_thu:{tag:"Phase 1 · Lower B",title:"Thursday — Lower B",arm:false,body:`
 `},
 
 p1_fri:{tag:"Phase 1 · Upper C + Throw",title:"Friday — Upper C + Throw",arm:false,body:`
-  ${pill("Lift before throwing. Arm Care B after.")}
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing · Arm Care B after the session")}
   ${sec("Primer",
     ex("MB Overhead Toss","2x3",["Full hip extension — arms follow · fluid motion"])
     +ex("Broad Jump","2x3",["Load the hips — drive horizontally","Stick the landing — control before going again"])
@@ -590,7 +594,8 @@ p1_fri:{tag:"Phase 1 · Upper C + Throw",title:"Friday — Upper C + Throw",arm:
 
 // ── PHASE 2 LIFTS ─────────────────────────────────────────────────────────────
 p2_mon:{tag:"Phase 2 · Lower A",title:"Monday — Lower A",arm:false,body:`
-  ${pill("Eccentric — tempo is the stimulus, not the load.")}
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Tempo is the stimulus — the descent is where the work happens","warn")}
   ${sec("Primer",
     ex("Medball Hip Toss","2x4",["Hip extension into the toss — more intent than Phase 1"])
     +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full hip extension — squeeze glute · hold 5s"])
@@ -609,7 +614,8 @@ p2_mon:{tag:"Phase 2 · Lower A",title:"Monday — Lower A",arm:false,body:`
 `},
 
 p2_tue:{tag:"Phase 2 · Upper A + Throw",title:"Tuesday — Upper A + Throw",arm:false,body:`
-  ${pill("Eccentric upper. Arm Care A after.")}
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("The slow descent is the work · Arm Care A after the session","warn")}
   ${sec("Primer",
     ex("Medball Chest Pass","2x4",["Full intent — lower half connects"])
     +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top"])
@@ -626,7 +632,8 @@ p2_tue:{tag:"Phase 2 · Upper A + Throw",title:"Tuesday — Upper A + Throw",arm
 `},
 
 p2_thu:{tag:"Phase 2 · Lower B",title:"Thursday — Lower B",arm:false,body:`
-  ${pill("Eccentric lower — frontal plane emphasis maintained.")}
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Frontal plane emphasis — slow eccentrics, stick every landing","warn")}
   ${sec("Primer",
     ex("SL Medball Slam","2x3e",["Load the hip — slam with intention · stick the landing"])
     +ex("Banded Marches","2x10",["Tuck pelvis — drive the knee up"])
@@ -644,7 +651,8 @@ p2_thu:{tag:"Phase 2 · Lower B",title:"Thursday — Lower B",arm:false,body:`
 `},
 
 p2_fri:{tag:"Phase 2 · Upper C + Throw",title:"Friday — Upper C + Throw",arm:false,body:`
-  ${pill("Eccentric upper. Arm Care B after.")}
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Control every descent · Arm Care B after the session","warn")}
   ${sec("Primer",
     ex("MB Overhead Toss","2x3",["Full hip extension — arms follow"])
     +ex("Broad Jump","3x3",["Max distance — load and drive · stick the landing"])
@@ -727,6 +735,11 @@ const P2=[
     ]},
 ];
 
+const LIFT_LABEL={
+  p1_mon:"Lower A",p1_tue:"Upper A",p1_thu:"Lower B",p1_fri:"Upper C",
+  p2_mon:"Lower A",p2_tue:"Upper A",p2_thu:"Lower B",p2_fri:"Upper C"
+};
+
 function buildWeeks(weeks,containerId){
   const container=document.getElementById(containerId);
   weeks.forEach(week=>{
@@ -758,7 +771,7 @@ function buildWeeks(weeks,containerId){
           if(d.throw){td.className='dc clickable';td.style.cssText=bg;td.textContent=d.throwLabel||'Tap to view';td.addEventListener('click',()=>openModal(d.throw));}
           else{td.className='dc off-cell';td.textContent='—';}
         } else if(row.t==='lift'){
-          if(d.lift){td.className='dc clickable';td.style.cssText=bg;td.textContent=DN[ci]+' Lift';td.addEventListener('click',()=>openModal(d.lift));}
+          if(d.lift){td.className='dc clickable';td.style.cssText=bg;td.textContent=LIFT_LABEL[d.lift]||d.lift;td.addEventListener('click',()=>openModal(d.lift));}
           else{td.className='dc off-cell';td.textContent='—';}
         } else if(row.t==='pt'){
           if(d.pt){td.className='dc arm-cell arm-clickable';td.textContent=d.pt==='pt_a'?'Post Throw A':'Post Throw B';td.addEventListener('click',()=>openModal(d.pt));}
