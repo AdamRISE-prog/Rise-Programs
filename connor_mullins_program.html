@@ -560,62 +560,66 @@ lift_fri:{tag:"Lifting — Friday",title:"Friday — Lift C",body:`
 
 const weeks = [
   {num:1,label:"Base Building",days:[
-    {d:"MON",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Lift A",recover:"Post A",tkey:"plyo_mod",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"off",throw:"Off",target:"",lift:"Arm Care A",recover:"",tkey:null,lkey:"armcare_a",rkey:null},
-    {d:"WED",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Lift B",recover:"Post B",tkey:"plyo_mod",lkey:"lift_wed",rkey:"pt_b"},
-    {d:"THU",cls:"off",throw:"Off",target:"",lift:"—",recover:"",tkey:null,lkey:null,rkey:null},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120 ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"med", throw:"plyo_mod",          throwLabel:"Moderate Plyo · 120 ft",           lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"off", throw:null,                 throwLabel:"Off",                              lift:null,       pt:null,    ac:"armcare_a"},
+    {d:"WED",i:"med", throw:"plyo_mod",          throwLabel:"Moderate Plyo · 120 ft",           lift:"lift_wed", pt:"pt_b",  ac:null},
+    {d:"THU",i:"off", throw:null,                 throwLabel:"Off",                              lift:null,       pt:null,    ac:null},
+    {d:"FRI",i:"high",throw:"plyo_high",          throwLabel:"High Plyo · 120 ft",               lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:2,label:"Velocity Development",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"plyo_high",          throwLabel:"High Plyo · 120+ ft",              lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"plyo_high",          throwLabel:"High Plyo · 120+ ft",              lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:3,label:"Velocity Development",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"plyo_high",          throwLabel:"High Plyo · 120+ ft",              lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"plyo_high",          throwLabel:"High Plyo · 120+ ft",              lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:4,label:"Pulldown Introduction",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High + 3 Pulls",target:"100+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high_pull3",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High + 3 Pulls",target:"100+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high_pull3",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"plyo_high_pull3",    throwLabel:"High + 3 Pulls · 100+ ft",         lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Light Catch",         lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"plyo_high_pull3",    throwLabel:"High + 3 Pulls · 100+ ft",         lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:5,label:"Pulldown Volume",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High + 5 Pulls",target:"100+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high_pull5",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High + 5 Pulls",target:"100+ ft · Off Mound",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high_pull5_mound",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"plyo_high_pull5",    throwLabel:"High + 5 Pulls · 100+ ft",         lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Light Catch",         lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"plyo_high_pull5_mound",throwLabel:"High + 5 Pulls · Off Mound",    lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:6,label:"Deload",days:[
-    {d:"MON",cls:"med",throw:"Medium Plyo",target:"90 ft · Light",lift:"Lift A",recover:"Post A",tkey:"plyo_deload",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"low",throw:"Light Plyo",target:"90 ft · Light",lift:"Arm Care A",recover:"Post B",tkey:"plyo_deload",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"low",throw:"Light Plyo",target:"90 ft · Light",lift:"Lift B",recover:"",tkey:"plyo_deload",lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"med",throw:"Medium Plyo",target:"Light Long Toss",lift:"—",recover:"Post A",tkey:"plyo_deload",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"med",throw:"Medium Plyo",target:"Light Long Toss",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_deload",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"med", throw:"plyo_deload",        throwLabel:"Medium Plyo · 90 ft / Light",      lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"low", throw:"plyo_deload",        throwLabel:"Light Plyo · 90 ft / Light",       lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"low", throw:"plyo_deload",        throwLabel:"Light Plyo · 90 ft / Light",       lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"med", throw:"plyo_deload",        throwLabel:"Medium Plyo · Light Long Toss",    lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"med", throw:"plyo_deload",        throwLabel:"Medium Plyo · Light Long Toss",    lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:7,label:"Pulldown + Mound Phase",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High + Bullpen",target:"15 Pitches",lift:"Arm Care A",recover:"Post B",tkey:"bp15",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"5 Pulls + BP 20",target:"100+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"pull5_bp20",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"bp15",               throwLabel:"High + Bullpen · 15 Pitches",      lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Light Catch",         lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"pull5_bp20",         throwLabel:"5 Pulls + BP 20 · 100+ ft",        lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
   {num:8,label:"Peak Output",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
-    {d:"TUE",cls:"high",throw:"High + Bullpen",target:"20 Pitches",lift:"Arm Care A",recover:"Post B",tkey:"bp20",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
-    {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"6 Pulls + BP 25",target:"Peak Output",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"pull6_bp25",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"MON",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Medium / To Feel",    lift:"lift_mon", pt:"pt_a",  ac:null},
+    {d:"TUE",i:"high",throw:"bp20",               throwLabel:"High + Bullpen · 20 Pitches",      lift:null,       pt:"pt_b",  ac:"armcare_a"},
+    {d:"WED",i:"off", throw:null,                 throwLabel:"Off",                              lift:"lift_wed", pt:null,    ac:null},
+    {d:"THU",i:"low", throw:"plyo_light",         throwLabel:"Light Plyo · Light Catch",         lift:null,       pt:"pt_a",  ac:null},
+    {d:"FRI",i:"high",throw:"pull6_bp25",         throwLabel:"6 Pulls + BP 25 · Peak Output",    lift:"lift_fri", pt:"pt_b",  ac:"armcare_b"},
   ]},
 ];
+
+const LIFT_LABEL={lift_mon:"Lift A",lift_wed:"Lift B",lift_fri:"Lift C"};
+const PT_LABEL={pt_a:"Post Throw A",pt_b:"Post Throw B"};
+const AC_LABEL={armcare_a:"Arm Care A",armcare_b:"Arm Care B"};
 
 function buildSchedule(){
   const container=document.getElementById('schedule');
@@ -626,46 +630,52 @@ function buildSchedule(){
     const tbl=document.createElement('table');
     tbl.className='week-table';
 
+    // Header
     let hRow='<thead><tr><th class="row-label">Day</th>';
-    w.days.forEach(d=>{hRow+=`<th class="day-header day-${d.cls}">${d.d}</th>`;});
+    w.days.forEach(d=>{hRow+=`<th class="day-header day-${d.i}">${d.d}</th>`;});
     hRow+='</tr></thead>';
 
-    let throwRow='<tr><td class="row-label">Throw</td>';
-    w.days.forEach(d=>{
-      if(!d.tkey) throwRow+=`<td class="data-cell off-cell">—</td>`;
-      else throwRow+=`<td class="data-cell clickable" onclick="openModal('${d.tkey}')">${d.throw}</td>`;
-    });
-    throwRow+='</tr>';
-
-    let targetRow='<tr><td class="row-label">Target</td>';
-    w.days.forEach(d=>{
-      if(!d.tkey) targetRow+=`<td class="data-cell off-cell">—</td>`;
-      else targetRow+=`<td class="data-cell clickable" onclick="openModal('${d.tkey}')">${d.target||'—'}</td>`;
-    });
-    targetRow+='</tr>';
-
-    let liftRow='<tr><td class="row-label">Lift</td>';
-    w.days.forEach(d=>{
-      if(!d.lkey) liftRow+=`<td class="data-cell off-cell">${d.lift||'—'}</td>`;
-      else liftRow+=`<td class="prep-cell clickable" onclick="openModal('${d.lkey}')">${d.lift}</td>`;
-    });
-    liftRow+='</tr>';
-
-    let recoverRow='<tr><td class="row-label">Recover</td>';
-    w.days.forEach(d=>{
-      if(!d.rkey) recoverRow+=`<td class="data-cell off-cell">${d.recover||'—'}</td>`;
-      else recoverRow+=`<td class="prep-cell clickable" onclick="openModal('${d.rkey}')">${d.recover}</td>`;
-    });
-    recoverRow+='</tr>';
-
+    // PREP — top row
     let prepRow='<tr><td class="row-label">Prep</td>';
     w.days.forEach(d=>{
-      if(d.cls==='off'&&!d.tkey&&!d.lkey) prepRow+=`<td class="data-cell off-cell">—</td>`;
+      if(!d.throw&&!d.lift) prepRow+=`<td class="dc off-cell">—</td>`;
       else prepRow+=`<td class="prep-cell clickable" onclick="openModal('prep')">Daily Prep</td>`;
     });
     prepRow+='</tr>';
 
-    tbl.innerHTML=hRow+'<tbody>'+throwRow+targetRow+liftRow+recoverRow+prepRow+'</tbody>';
+    // THROW
+    let throwRow='<tr><td class="row-label">Throw</td>';
+    w.days.forEach(d=>{
+      if(!d.throw) throwRow+=`<td class="dc off-cell">—</td>`;
+      else throwRow+=`<td class="dc clickable" onclick="openModal('${d.throw}')">${d.throwLabel}</td>`;
+    });
+    throwRow+='</tr>';
+
+    // LIFT
+    let liftRow='<tr><td class="row-label">Lift</td>';
+    w.days.forEach(d=>{
+      if(!d.lift) liftRow+=`<td class="dc off-cell">—</td>`;
+      else liftRow+=`<td class="dc clickable" onclick="openModal('${d.lift}')">${LIFT_LABEL[d.lift]}</td>`;
+    });
+    liftRow+='</tr>';
+
+    // POST THROW
+    let ptRow='<tr><td class="row-label">Post Throw</td>';
+    w.days.forEach(d=>{
+      if(!d.pt) ptRow+=`<td class="dc off-cell">—</td>`;
+      else ptRow+=`<td class="dc clickable" onclick="openModal('${d.pt}')">${PT_LABEL[d.pt]}</td>`;
+    });
+    ptRow+='</tr>';
+
+    // ARM CARE
+    let acRow='<tr><td class="row-label">Arm Care</td>';
+    w.days.forEach(d=>{
+      if(!d.ac) acRow+=`<td class="arm-cell">—</td>`;
+      else acRow+=`<td class="arm-cell arm-clickable" onclick="openModal('${d.ac}')">${AC_LABEL[d.ac]}</td>`;
+    });
+    acRow+='</tr>';
+
+    tbl.innerHTML=hRow+'<tbody>'+prepRow+throwRow+liftRow+ptRow+acRow+'</tbody>';
     block.appendChild(tbl);
     container.appendChild(block);
   });
