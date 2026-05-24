@@ -76,7 +76,7 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 .dc{font-size:11px;font-family:'Barlow',sans-serif;font-weight:500;color:var(--off-white);padding:8px 8px;line-height:1.3;background:#111}
 .dc:nth-child(even){background:#131313}
 .off-cell{color:#222!important;background:#0d0d0d!important}
-.prep-cell{font-style:italic;color:var(--green)!important;font-size:10px;font-weight:600;background:#0f0f0f!important}
+.prep-cell{font-family:'Barlow Condensed',sans-serif;font-style:italic;color:var(--green)!important;font-size:11px;font-weight:700;letter-spacing:.08em;background:#0f0f0f!important}
 .arm-cell{font-style:italic;color:var(--armt)!important;font-size:10px;font-weight:600;background:#0d0b12!important}
 .clickable{cursor:pointer;transition:background .15s}
 .clickable:hover{background:#1a2a10!important}
@@ -499,8 +499,8 @@ armcare_b:{tag:"Arm Care — B Day",title:"Arm Care B — Friday",body:`
   ,true)}
 `},
 
-lift_mon:{tag:"Lifting — Monday",title:"Monday — Lower A",body:`
-  ${pill("Lift before throwing")}
+lift_mon:{tag:"Lifting — Monday",title:"Monday — Lift A",body:`
+  ${pill("Lift A — Lift before throwing")}
   ${sec("Primer",
     ex("Medball Chest Pass","2x4",["Full intent — lower half connects","Arm follows the body"])
     +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full hip extension — squeeze push leg glute","Hold the full 5s · neutral spine"])
@@ -518,8 +518,8 @@ lift_mon:{tag:"Lifting — Monday",title:"Monday — Lower A",body:`
   )}
 `},
 
-lift_wed:{tag:"Lifting — Wednesday",title:"Wednesday — Full Body",body:`
-  ${pill("Lift before throwing (deload only) — or standalone")}
+lift_wed:{tag:"Lifting — Wednesday",title:"Wednesday — Lift B",body:`
+  ${pill("Lift B — Lift before throwing (deload only) or standalone")}
   ${sec("Primer",
     ex("SL Medball Slam","2x3e",["Single leg — load the hip, slam with intention","Stick the landing — control before going again"])
     +ex("Banded Marches","2x10",["Tuck pelvis — ribcage down","Drive the knee up — don't let the band rotate the pelvis"])
@@ -537,8 +537,8 @@ lift_wed:{tag:"Lifting — Wednesday",title:"Wednesday — Full Body",body:`
   )}
 `},
 
-lift_fri:{tag:"Lifting — Friday",title:"Friday — Lower B",body:`
-  ${pill("Lift before throwing — Arm Care B after")}
+lift_fri:{tag:"Lifting — Friday",title:"Friday — Lift C",body:`
+  ${pill("Lift C — Lift before throwing — Arm Care B after")}
   ${sec("Primer",
     ex("MB Overhead Toss","2x3",["Full hip extension — arms follow, fluid motion","Drive through the whole body — not just the arms"])
     +ex("Lateral Triple Extension Wall Iso","2x3 · 5s hold",["Push laterally into wall — full extension","Tall spine · 10s hold — feel the lateral hip loading"])
@@ -560,60 +560,60 @@ lift_fri:{tag:"Lifting — Friday",title:"Friday — Lower B",body:`
 
 const weeks = [
   {num:1,label:"Base Building",days:[
-    {d:"MON",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Lower A",recover:"Post A",tkey:"plyo_mod",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Lift A",recover:"Post A",tkey:"plyo_mod",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"off",throw:"Off",target:"",lift:"Arm Care A",recover:"",tkey:null,lkey:"armcare_a",rkey:null},
-    {d:"WED",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Full Body",recover:"Post B",tkey:"plyo_mod",lkey:"lift_wed",rkey:"pt_b"},
+    {d:"WED",cls:"med",throw:"Moderate Plyo",target:"Medium · 120 ft",lift:"Lift B",recover:"Post B",tkey:"plyo_mod",lkey:"lift_wed",rkey:"pt_b"},
     {d:"THU",cls:"off",throw:"Off",target:"",lift:"—",recover:"",tkey:null,lkey:null,rkey:null},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120 ft",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120 ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:2,label:"Velocity Development",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:3,label:"Velocity Development",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"High Plyo",target:"High · 120+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:4,label:"Pulldown Introduction",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High + 3 Pulls",target:"100+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high_pull3",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High + 3 Pulls",target:"100+ ft",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_high_pull3",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"High + 3 Pulls",target:"100+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high_pull3",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:5,label:"Pulldown Volume",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High + 5 Pulls",target:"100+ ft",lift:"Arm Care A",recover:"Post B",tkey:"plyo_high_pull5",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"High + 5 Pulls",target:"100+ ft · Off Mound",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_high_pull5_mound",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"High + 5 Pulls",target:"100+ ft · Off Mound",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_high_pull5_mound",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:6,label:"Deload",days:[
-    {d:"MON",cls:"med",throw:"Medium Plyo",target:"90 ft · Light",lift:"Lower A",recover:"Post A",tkey:"plyo_deload",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"med",throw:"Medium Plyo",target:"90 ft · Light",lift:"Lift A",recover:"Post A",tkey:"plyo_deload",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"low",throw:"Light Plyo",target:"90 ft · Light",lift:"Arm Care A",recover:"Post B",tkey:"plyo_deload",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"low",throw:"Light Plyo",target:"90 ft · Light",lift:"Full Body",recover:"",tkey:"plyo_deload",lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"low",throw:"Light Plyo",target:"90 ft · Light",lift:"Lift B",recover:"",tkey:"plyo_deload",lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"med",throw:"Medium Plyo",target:"Light Long Toss",lift:"—",recover:"Post A",tkey:"plyo_deload",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"med",throw:"Medium Plyo",target:"Light Long Toss",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"plyo_deload",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"med",throw:"Medium Plyo",target:"Light Long Toss",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"plyo_deload",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:7,label:"Pulldown + Mound Phase",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High + Bullpen",target:"15 Pitches",lift:"Arm Care A",recover:"Post B",tkey:"bp15",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"5 Pulls + BP 20",target:"100+ ft",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"pull5_bp20",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"5 Pulls + BP 20",target:"100+ ft",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"pull5_bp20",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
   {num:8,label:"Peak Output",days:[
-    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lower A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
+    {d:"MON",cls:"low",throw:"Light Plyo",target:"Medium · To Feel",lift:"Lift A",recover:"Post A",tkey:"plyo_light",lkey:"lift_mon",rkey:"pt_a"},
     {d:"TUE",cls:"high",throw:"High + Bullpen",target:"20 Pitches",lift:"Arm Care A",recover:"Post B",tkey:"bp20",lkey:"armcare_a",rkey:"pt_b"},
-    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Full Body",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
+    {d:"WED",cls:"off",throw:"Off",target:"",lift:"Lift B",recover:"",tkey:null,lkey:"lift_wed",rkey:null},
     {d:"THU",cls:"low",throw:"Light Plyo",target:"Light Catch",lift:"—",recover:"Post A",tkey:"plyo_light",lkey:null,rkey:"pt_a"},
-    {d:"FRI",cls:"high",throw:"6 Pulls + BP 25",target:"Peak Output",lift:"Lower B",recover:"Arm Care B · Post B",tkey:"pull6_bp25",lkey:"lift_fri",rkey:"armcare_b"},
+    {d:"FRI",cls:"high",throw:"6 Pulls + BP 25",target:"Peak Output",lift:"Lift C",recover:"Arm Care B · Post B",tkey:"pull6_bp25",lkey:"lift_fri",rkey:"armcare_b"},
   ]},
 ];
 
