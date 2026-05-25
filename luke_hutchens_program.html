@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rise Baseball Co. — Luke Hutchens Player Development Program</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --green:#5DC226;--green-dark:#3d8a18;--black:#080808;
+  --card:#111111;--card2:#161616;--card3:#1a1a1a;
+  --border:#222222;--border2:#2a2a2a;
+  --white:#ffffff;--off-white:#cccccc;--dim:#666666;
+  --high:#c0392b;--med:#c8960a;--low:#2a7a0a;
+  --off-bg:#0d0d0d;--off-text:#2a2a2a;
+  --arm:#7b2fbf;--arm2:#4a1a73;--armt:#d4a0ff;
+  --p1:#1a6abf;--p2:#c8960a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh}
+.site-header{background:var(--black);border-bottom:3px solid var(--green);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.logo-img{height:52px;width:auto}
+.header-right{text-align:right}
+.header-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.header-name span{color:var(--green)}
+.header-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;color:var(--dim);letter-spacing:.16em;text-transform:uppercase;margin-top:3px}
+.hero{background:linear-gradient(135deg,#0a0a0a 0%,#0f1a0a 50%,#080808 100%);border-bottom:1px solid var(--border);padding:40px 40px 32px}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:48px;color:var(--white);letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.hero-title span{color:var(--green)}
+.hero-divider{width:60px;height:4px;background:var(--green);margin:14px 0}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:20px}
+.hero-meta-item{display:flex;flex-direction:column;gap:3px}
+.hero-meta-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.hero-meta-value{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);letter-spacing:.04em}
+.phase-nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--card)}
+.pnav-btn{flex:1;padding:12px 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;background:none;color:var(--dim);border-bottom:3px solid transparent;transition:all .15s}
+.pnav-btn:hover{color:var(--off-white);background:var(--card2)}
+.pnav-btn.active{color:var(--green);border-bottom-color:var(--green)}
+.phase-block{display:none}
+.phase-block.active{display:block}
+.section{padding:32px 40px;border-bottom:1px solid var(--border)}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border2)}
+.goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.goal-card{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--green);padding:18px 20px}
+.goal-card-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.goal-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #1c1c1c;font-size:13px;color:var(--off-white);line-height:1.4}
+.goal-item:last-child{border-bottom:none}
+.goal-item::before{content:"→";color:var(--green);font-weight:700;font-size:11px;margin-top:2px;flex-shrink:0}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.focus-card{background:var(--card);border:1px solid var(--border);padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
+.focus-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--border2);line-height:1;flex-shrink:0}
+.focus-content{display:flex;flex-direction:column;gap:4px}
+.focus-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--white);letter-spacing:.06em;text-transform:uppercase}
+.focus-desc{font-size:12px;color:var(--dim);line-height:1.4}
+.injury-bar{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--med);padding:14px 20px;margin-bottom:16px;font-size:13px;color:var(--off-white);line-height:1.6}
+.injury-bar strong{color:var(--med);font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.legend-bar{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px}
+.legend-item{flex:1;padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px}
+.legend-item .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.l-high{background:var(--high);color:#fff}.l-med{background:var(--med);color:#fff}
+.l-low{background:var(--low);color:#fff}.l-off{background:#141414;color:var(--dim)}
+.week-block{margin-bottom:24px}
+.week-header{display:flex;align-items:center;gap:14px;padding:8px 0 6px;border-bottom:2px solid var(--green);margin-bottom:0}
+.week-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:var(--green);letter-spacing:.04em;line-height:1}
+.week-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase}
+.week-note{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;color:var(--armt);letter-spacing:.1em;text-transform:uppercase;margin-left:auto}
+.week-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.week-table th,.week-table td{border:1px solid var(--border);text-align:center;vertical-align:middle;padding:0}
+.row-label{width:68px;background:#0e0e0e;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);padding:9px 4px}
+.day-header{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 6px}
+.day-high{background:var(--high);color:#fff}.day-med{background:var(--med);color:#fff}
+.day-low{background:var(--low);color:#fff}.day-off{background:var(--off-bg);color:var(--off-text)}
+.dc{font-size:11px;font-family:'Barlow',sans-serif;font-weight:500;color:var(--off-white);padding:8px 8px;line-height:1.3;background:#111}
+.dc:nth-child(even){background:#131313}
+.off-cell{color:#222!important;background:#0d0d0d!important}
+.prep-cell{font-style:italic;color:var(--green)!important;font-size:10px;font-weight:600;background:#0f0f0f!important}
+.arm-cell{font-style:italic;color:var(--armt)!important;font-size:10px;font-weight:600;background:#0d0b12!important}
+.clickable{cursor:pointer;transition:background .15s}
+.clickable:hover{background:#1a2a10!important}
+.clickable::after{content:"▾";display:block;font-size:9px;color:var(--green);margin-top:3px;opacity:.7}
+.arm-clickable{cursor:pointer;transition:background .15s}
+.arm-clickable:hover{background:#1a0d2e!important}
+.arm-clickable::after{content:"▾";display:block;font-size:9px;color:var(--armt);margin-top:3px;opacity:.7}
+.phase-banner{padding:14px 40px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border)}
+.pb-p1{background:linear-gradient(90deg,#0f2d52,#080808)}
+.pb-p2{background:linear-gradient(90deg,#3d2a03,#080808)}
+.pb-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:40px;line-height:1}
+.pb-p1 .pb-num{color:var(--p1)}.pb-p2 .pb-num{color:var(--p2)}
+.pb-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.pb-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.pb-intent{font-size:12px;color:#888;line-height:1.5;margin-top:6px;max-width:680px}
+.pb-intent strong{color:var(--green)}
+.post-throw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.pt-block{padding:18px 22px}
+.pt-block:first-child{background:var(--card);border-right:1px solid var(--border)}
+.pt-block:last-child{background:var(--card2)}
+.pt-day-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);letter-spacing:.08em;margin-bottom:12px}
+.pt-item{font-size:12px;color:var(--off-white);padding:5px 0;border-bottom:1px solid #1c1c1c;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.pt-item:last-child{border-bottom:none}
+.pt-item::before{content:"→";color:var(--green);font-weight:700;font-size:10px;flex-shrink:0;margin-top:2px}
+.site-footer{border-top:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.footer-brand span{color:var(--green)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border2);border-top:3px solid var(--green);width:100%;max-width:680px;max-height:88vh;overflow-y:auto}
+.modal.arm-modal{border-top-color:var(--arm)}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);z-index:10}
+.modal-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:3px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:var(--white);letter-spacing:.04em;text-transform:uppercase;line-height:1.1}
+.modal-close{background:none;border:1px solid var(--border2);color:var(--dim);font-size:18px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:3px;flex-shrink:0;margin-left:16px;transition:all .15s}
+.modal-close:hover{border-color:var(--green);color:var(--green)}
+.modal-body{padding:20px 24px 28px}
+.modal-sec{margin-bottom:22px}.modal-sec:last-child{margin-bottom:0}
+.modal-sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.modal-sec-title.arm-sec{color:var(--armt);border-bottom-color:var(--arm2)}
+.ex-card{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--green-dark);margin-bottom:8px;overflow:hidden}
+.ex-card.arm-card{border-left-color:var(--arm2)}
+.ex-card:last-child{margin-bottom:0}
+.ex-card-header{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;cursor:pointer}
+.ex-card-header:hover{background:#1a1a1a}
+.ex-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--white)}
+.ex-sets{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;color:var(--green);white-space:nowrap;margin-left:12px}
+.ex-card.arm-card .ex-sets{color:var(--armt)}
+.ex-expand{font-size:10px;color:var(--dim);margin-left:8px;transition:transform .2s}
+.ex-card.open .ex-expand{transform:rotate(180deg)}
+.ex-details{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.ex-card.open .ex-details{display:block}
+.cue-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:10px 0 6px}
+.cue-item{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #1c1c1c;font-size:12px;color:var(--off-white);line-height:1.4}
+.cue-item:last-child{border-bottom:none}
+.cue-item::before{content:"•";color:var(--green);font-size:14px;flex-shrink:0;margin-top:-1px}
+.simple-list{list-style:none}
+.simple-list li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #1a1a1a;font-size:12px;color:var(--off-white);line-height:1.4}
+.simple-list li:last-child{border-bottom:none}
+.simple-list li::before{content:"→";color:var(--green);font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.info-pill{display:inline-flex;align-items:center;background:#1a2a10;border:1px solid var(--green-dark);padding:5px 12px;font-size:12px;color:var(--green);font-weight:600;margin-bottom:14px}
+.arm-pill{background:#0d0b12;border-color:var(--arm2);color:var(--armt)}
+.warn-pill{background:#2a1a00;border-color:var(--med);color:#f5c842}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:var(--green-dark);border-radius:3px}
+@media(max-width:900px){
+  .goals-grid,.focus-grid{grid-template-columns:1fr}
+  .post-throw-grid{grid-template-columns:1fr}
+  .site-header,.section,.hero,.phase-banner{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img src="rise_logo.png" alt="Rise Baseball Co." class="logo-img">
+  <div class="header-right">
+    <div class="header-name"><span>Rise Baseball Co.</span> — Luke Hutchens</div>
+    <div class="header-sub">Player Development Program</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-title"><span>8-Week</span> Arm Health &amp; Velocity Block</div>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Athlete</span>
+      <span class="hero-meta-value">Luke Hutchens</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Level</span>
+      <span class="hero-meta-value">Junior — Forbush High School</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Goals</span>
+      <span class="hero-meta-value">Bulletproof Arm · 88–90 mph</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Focus</span>
+      <span class="hero-meta-value">Prep · Arm Care · Plyos · Offspeed</span>
+    </div>
+  </div>
+</div>
+
+<div style="background:#0d1a08;border:1px solid #3d8a18;border-left:4px solid #5DC226;padding:14px 20px;font-size:13px;color:#cccccc;line-height:1.6;margin-bottom:0">
+  <strong style="color:#5DC226;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase">Schedule Note:</strong> The days listed are guidelines, not rules. What matters is getting the sessions in — not which day they fall on. If the schedule shifts, communicate it and we adjust.
+</div>
+<div style="background:#1a0808;border:1px solid #7a1e13;border-left:4px solid #c0392b;padding:14px 20px;font-size:13px;color:#cccccc;line-height:1.6">
+  <strong style="color:#ff6b5a;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase">Communicate Discomfort:</strong> If anything feels off — elbow, shoulder, anything — say it immediately. Do not push through pain.
+</div>
+
+<div class="phase-nav">
+  <button class="pnav-btn active" onclick="showPhase('p1',this)">Phase 1 — Isometric</button>
+  <button class="pnav-btn" onclick="showPhase('p2',this)">Phase 2 — Eccentric</button>
+</div>
+
+<!-- ══ PHASE 1 ══ -->
+<div class="phase-block active" id="p1">
+
+  <div class="section">
+    <div class="section-title">Goals &amp; Focus</div>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-card-title">Primary Goals</div>
+        <div class="goal-item">Build a bulletproof arm — prep, arm care, and post throw done right every single session</div>
+        <div class="goal-item">Get to 88–90 mph consistently — not once, not on a good day, but reliably every time</div>
+        <div class="goal-item">Develop a go-to offspeed pitch that creates real separation</div>
+        <div class="goal-item">Stay healthy — nothing kills development faster than avoidable breakdown</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-title">Block Structure</div>
+        <div class="goal-item">Weeks 1–4: Phase 1 — Isometric Foundation · build strength through position and tension</div>
+        <div class="goal-item">Weeks 5–8: Phase 2 — Eccentric Volume · controlled loading, power output</div>
+        <div class="goal-item">Throwing builds progressively — light → moderate → high → pulldowns → deload</div>
+        <div class="goal-item">Prep and arm care are not optional — they are the program</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Phase 1 — Weeks 1–4 · Isometric Foundation</div>
+    <div id="wc_p1"></div>
+  </div>
+
+</div>
+
+<!-- ══ PHASE 2 ══ -->
+<div class="phase-block" id="p2">
+
+  <div class="section">
+    <div class="section-title">Phase 2 — Weeks 5–8 · Eccentric Volume</div>
+    <div id="wc_p2"></div>
+  </div>
+
+</div>
+
+<!-- ══ MODAL OVERLAY ══ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOv(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-tag" id="modal-tag"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<footer>
+  <span>Rise Baseball Co.</span> — Built to Last.
+</footer>
+
+<script>
+
+function ex(name,sets,cues,arm=false){
+  return `<div class="ex-card${arm?' arm-card':''}">
+    <div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')">
+      <span class="ex-name">${name}</span>
+      <span class="ex-sets">${sets}</span>
+      <span class="ex-expand">&#9662;</span>
+    </div>
+    <div class="ex-details">
+      <div class="cue-label">Coaching Cues</div>
+      ${cues.map(c=>`<div class="cue-item">${c}</div>`).join('')}
+    </div>
+  </div>`;
+}
+function sec(title,body,arm=false){
+  return `<div class="modal-sec"><div class="modal-sec-title${arm?' arm-sec':''}">${title}</div>${body}</div>`;
+}
+function pill(t,type=''){
+  const cls=type==='arm'?'arm-pill':type==='warn'?'warn-pill':'';
+  return `<div class="info-pill ${cls}">${t}</div>`;
+}
+function slist(items){
+  return `<ul class="simple-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+}
+
+const PLYO_LIGHT_BODY = `<div class="info-pill">&#x1F7E2; Light — Mechanics and feel — not about output</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 90 ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work out to distance at your feel — don't force extension</div><div class="cue-item">Crow hop every throw — load the hip and drive</div><div class="cue-item">Pull back in with intent — work the arm down</div></div></div></div></div>`;
+const PLYO_LIGHT_CATCH_BODY = `<div class="info-pill">&#x1F7E2; Light — Recovery focus — light catch, feel the arm</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to to Feel</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work out to distance at your feel — don't force extension</div><div class="cue-item">Crow hop every throw — load the hip and drive</div><div class="cue-item">Pull back in with intent — work the arm down</div></div></div></div></div>`;
+const PLYO_MOD_BODY = `<div class="info-pill">&#x1F7E1; Moderate — Build intent and range of motion</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Step Backs</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Step back into your balance point — loaded and ready</div><div class="cue-item">Drive down the mound — hip-to-shoulder separation</div><div class="cue-item">Let the arm whip free — don't guide it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Janitors</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full hip engagement — stay behind the ball longer</div><div class="cue-item">Rotate through the hips first — arm comes last</div><div class="cue-item">Finish with extension — not just rotation</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Walking Windup</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Rhythm and timing — every step flows into the next</div><div class="cue-item">Hip load on back leg — drive through with intent</div><div class="cue-item">Stay tall through release</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 120 ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work out to 120 — extend at your feel, not by force</div><div class="cue-item">Crow hop every throw — full hip load and drive</div><div class="cue-item">Pull back in controlled — arm down on purpose</div></div></div></div></div>`;
+const PLYO_HIGH_BODY = `<div class="info-pill">&#x1F534; High — Max intent and extension</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Step Backs</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Step back into your balance point — loaded and ready</div><div class="cue-item">Drive down the mound — hip-to-shoulder separation</div><div class="cue-item">Let the arm whip free — don't guide it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Janitors</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full hip engagement — stay behind the ball longer</div><div class="cue-item">Rotate through the hips first — arm comes last</div><div class="cue-item">Finish with extension — not just rotation</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Walking Windup</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Rhythm and timing — every step flows into the next</div><div class="cue-item">Hip load on back leg — drive through with intent</div><div class="cue-item">Stay tall through release</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 120+ ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work to max distance at intent — every throw means something</div><div class="cue-item">Crow hop every throw — full hip load and max extension</div><div class="cue-item">Pull back in controlled — finish with purpose</div></div></div></div></div>`;
+const PLYO_HIGH_PULL3_BODY = `<div class="info-pill">&#x1F534; High — Max intent and extension · 3 Pulldowns</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Step Backs</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Step back into your balance point — loaded and ready</div><div class="cue-item">Drive down the mound — hip-to-shoulder separation</div><div class="cue-item">Let the arm whip free — don't guide it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Janitors</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full hip engagement — stay behind the ball longer</div><div class="cue-item">Rotate through the hips first — arm comes last</div><div class="cue-item">Finish with extension — not just rotation</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Walking Windup</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Rhythm and timing — every step flows into the next</div><div class="cue-item">Hip load on back leg — drive through with intent</div><div class="cue-item">Stay tall through release</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 100+ ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work to max distance at intent — every throw means something</div><div class="cue-item">Crow hop every throw — full hip load and max extension</div><div class="cue-item">Pull back in controlled — finish with purpose</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Pulldowns — 3 Reps</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pulldowns</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full run-up — don't slow down before release</div><div class="cue-item">Let the momentum carry through — trust the arm</div><div class="cue-item">Stay relaxed — speed is a product of freedom, not force</div></div></div></div></div>`;
+const PLYO_HIGH_PULL5_BODY = `<div class="info-pill">&#x1F534; High — Max intent and extension · 5 Pulldowns</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Step Backs</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Step back into your balance point — loaded and ready</div><div class="cue-item">Drive down the mound — hip-to-shoulder separation</div><div class="cue-item">Let the arm whip free — don't guide it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Janitors</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full hip engagement — stay behind the ball longer</div><div class="cue-item">Rotate through the hips first — arm comes last</div><div class="cue-item">Finish with extension — not just rotation</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Walking Windup</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Rhythm and timing — every step flows into the next</div><div class="cue-item">Hip load on back leg — drive through with intent</div><div class="cue-item">Stay tall through release</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 100+ ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work to max distance at intent — every throw means something</div><div class="cue-item">Crow hop every throw — full hip load and max extension</div><div class="cue-item">Pull back in controlled — finish with purpose</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Pulldowns — 5 Reps</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pulldowns</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>5 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full run-up — don't slow down before release</div><div class="cue-item">Let the momentum carry through — trust the arm</div><div class="cue-item">Stay relaxed — speed is a product of freedom, not force</div></div></div></div></div>`;
+const PLYO_HIGH_PULL5_MOUND_BODY = `<div class="info-pill">&#x1F534; High — Max intent and extension · 5 Pulldowns · Catch Off Mound</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Facing away from partner — load the back hip, fire through</div><div class="cue-item">Hip-to-shoulder sequencing — hips lead, arm follows</div><div class="cue-item">Keep it fluid — don't muscle it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Drive off the back foot — transfer energy through the pivot</div><div class="cue-item">Stay tall in the finish — don't collapse at the waist</div><div class="cue-item">Clean arm path through the release</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Build momentum into the throw — don't stop and start</div><div class="cue-item">Let the rolling motion load your lower half</div><div class="cue-item">Stay connected — arm follows the body, doesn't lead</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Step Backs</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Step back into your balance point — loaded and ready</div><div class="cue-item">Drive down the mound — hip-to-shoulder separation</div><div class="cue-item">Let the arm whip free — don't guide it</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Janitors</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full hip engagement — stay behind the ball longer</div><div class="cue-item">Rotate through the hips first — arm comes last</div><div class="cue-item">Finish with extension — not just rotation</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Walking Windup</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d4ac0d;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>2x3 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Rhythm and timing — every step flows into the next</div><div class="cue-item">Hip load on back leg — drive through with intent</div><div class="cue-item">Stay tall through release</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to 100+ ft</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Work to max distance at intent — every throw means something</div><div class="cue-item">Catch off the mound — build rhythm into your extension</div><div class="cue-item">Pull back in controlled — finish with purpose</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Pulldowns — 5 Reps</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pulldowns</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888888;margin-right:2px;flex-shrink:0"></span>5 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Full run-up — don't slow down before release</div><div class="cue-item">Let the momentum carry through — trust the arm</div><div class="cue-item">Catch off the mound — maintain rhythm through each one</div></div></div></div></div>`;
+const PLYO_DELOAD_BODY = `<div class="info-pill">&#x1F7E1; Deload — Honor the week. Protect what you built.</div><div class="modal-sec"><div class="modal-sec-title">Weighted Ball Work</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Reverse Throws</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x8 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Light and fluid — let mechanics breathe</div><div class="cue-item">No output chasing — this week is about feel</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Pivot Pickoff</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5DC226;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Controlled — stay in your mechanics</div><div class="cue-item">This is recovery work, not competition</div></div></div></div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Roll-Ins</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1a6abf;margin-right:2px;flex-shrink:0"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:2px;flex-shrink:0"></span>2x4 reps</span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">Smooth rhythm — no forcing</div><div class="cue-item">Let the body reset and absorb</div></div></div></div></div><div class="modal-sec"><div class="modal-sec-title">Long Toss</div><div class="ex-card"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">Catch to Feel</span><span class="ex-sets"><span style="display:flex;align-items:center;gap:3px;white-space:nowrap"></span></span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-block"><div class="cue-label">Coaching Cues</div><div class="cue-item">No distance targets — go where the arm feels good</div><div class="cue-item">Crow hop — just let it flow</div><div class="cue-item">Pull back easy — deload means easy</div></div></div></div></div>`;
+
+const C={
+
+prep:{tag:"Pre-Session",title:"Prep Protocol",arm:false,body:`
+  ${pill("Complete before ALL throwing and lifting — every session")}
+  ${sec("Tissue Work",
+    ex("Foam Roll","Full body · 20–30s per area",["Upper back, lats, legs — pause and breathe into tight spots","Don't just roll through — pin and breathe"])
+    +ex("Lacrosse Ball","20s–1:00 per spot",["Chest, traps, low traps, rear delts","Hips, hip flexors, triceps — any knot or area of discomfort","Pin and breathe — let the tension release naturally"])
+    +ex("Psoas Release","30s–1:00 each side",["Breathe deeply — relaxation is the release","Critical for hip flexor length and extension in throwing"])
+    +ex("Foam Roller Upper Back Extension","2:00",["Mid-thoracic spine across the roller","Breathe out as you extend — feel the chest open","This is where throwing rotation lives"])
+  )}
+  ${sec("Mobility — Breathe Through Every Movement",
+    ex("Couch Stretch","2x1 min each side",["Hip flexor and quad — front hip to the ground","Tuck pelvis — don't arch the lower back","Breathe — relax into the stretch"])
+    +ex("Prayer Stretch","5x15s hold",["Hinge at the hips — arms reach long overhead","Breathe out as you sink — feel the lats and t-spine open","Hold for real — 15 seconds counts"])
+    +ex("Pigeon","2x1 min each side",["Hip external rotation — front shin parallel to the body","Don't collapse — stay square, breathe into the hip"])
+    +ex("Back Bridge","2x20s",["Drive hips up — glutes and hamstrings working together","Open the chest — shoulder blades pull together","Breathe — hold the position"])
+    +ex("Foam Roll IR","2x5 · 5s hold",["Shoulder internal rotation on the roller","5s hold at end range each rep","Breathe into the stretch — don't force it"])
+  )}
+  ${sec("Activation / Correctives",
+    ex("Banded T Spine Openers / Waterbag T Spine Stability","2x8",["Rotate through the thoracic — not the lower back","Control the movement — feel the t-spine engaging","Waterbag option: hold and stabilize — fight the load"])
+    +ex("Triple Extension Sprinter Iso","5 reps · 3s hold",["Full hip extension — ankle, knee, hip all locked out","Squeeze push leg glute at top of each rep","3s hold — feel the full extension pattern"])
+    +ex("90/90 Front Leg Lift Hold","2x5 · 3s hold",["Maintain the 90/90 position — don't let the back leg drop","Drive front knee up — hold 3s at top","Core stays engaged throughout"])
+    +ex("90/90 Hip Switches","2x6e · slow and controlled",["Rotate from side to side — maintain 90/90 throughout","Slow and controlled — this is hip mobility, not a race","Feel the external rotation of each hip"])
+    +ex("Prone ER Scap Tip","2x3 · 5s hold",["Face down — arm at 90 degrees","External rotate and feel the scap tip — lower trap engages","5s hold — slow return"])
+  )}
+  ${sec("Dynamic Warm-Up — Linear · 20 Yards",
+    ex("Linear Series","10-yd jog between each",["Knee hugs with calf raise · Quad pull · Scoops (scoop the grass)","Frankensteins · Lateral lunge · World's greatest","Jog out / backpedal back · High knees to 10-yd jog · A skips to 10-yd jog","Karaoke (fire your hips) · Lateral bounds · Broad jump 1x4"])
+    +ex("Upper Body Series","10 seconds each",["Back slappers · Arm swings up and down · 90/90 ER/IR","Overhead press with scap reach · Scap pinch rows","Spread out rotations — open the chest and t-spine"])
+  )}
+`},
+
+plyo_light:{tag:"Plyo Program",title:"Light Intensity Day",arm:false,body:PLYO_LIGHT_BODY},
+plyo_light_catch:{tag:"Plyo Program",title:"Light — Recovery Catch",arm:false,body:PLYO_LIGHT_CATCH_BODY},
+plyo_mod:{tag:"Plyo Program",title:"Moderate Intensity Day",arm:false,body:PLYO_MOD_BODY},
+plyo_high:{tag:"Plyo Program",title:"High Intensity Day",arm:false,body:PLYO_HIGH_BODY},
+plyo_high_pull3:{tag:"Plyo Program",title:"High Intensity + 3 Pulldowns",arm:false,body:PLYO_HIGH_PULL3_BODY},
+plyo_high_pull5:{tag:"Plyo Program",title:"High Intensity + 5 Pulldowns",arm:false,body:PLYO_HIGH_PULL5_BODY},
+plyo_high_pull5_mound:{tag:"Plyo Program",title:"High Intensity + 5 Pulldowns · Mound",arm:false,body:PLYO_HIGH_PULL5_MOUND_BODY},
+plyo_deload:{tag:"Plyo Program",title:"Deload Week",arm:false,body:PLYO_DELOAD_BODY},
+
+armcare_a:{tag:"Arm Care — A Day",title:"Arm Care A — Tuesday",arm:true,body:`
+  ${pill("End of Tuesday session — every week",'arm')}
+  ${sec("Posterior Cuff",
+    ex("3-Way Shoulder Iso","2x20s",["Hold each position for 20s — light and controlled","Don't shrug — keep the scap depressed throughout","Feel the posterior cuff working — not the upper trap"],true)
+    +ex("Banded KB Waiter Carry","2x15 yds",["KB overhead, palm up — elbow locked, scap depressed","Walk tall — don't side bend or shrug","The overhead load is the stimulus — stay stable"],true)
+  ,true)}
+  ${sec("Scapular",
+    ex("Slider Bear Crawls","2x10 yds",["Knees hover — scap protracts with each step","Slow and controlled — feel serratus anterior engaging","Don't let the lower back arch"],true)
+    +ex("YTW Scap Iso","2x20s",["Y — reach long overhead, feel lower trap","T — low trap, not upper — squeeze and hold","W — elbows 90, pull back and hold the 20s"],true)
+  ,true)}
+  ${sec("Forearm",
+    ex("Forearm Iso","2x20s",["Wrist neutral — squeeze into the resistance","20s sustained effort — no pulsing","Feel flexors and extensors both working"],true)
+    +ex("Dead Hang","1x60s",["Full passive hang — let the shoulder decompress","Breathe — don't fight it","Feel the shoulder and lat releasing"],true)
+  ,true)}
+`},
+
+armcare_b:{tag:"Arm Care — B Day",title:"Arm Care B — Friday",arm:true,body:`
+  ${pill("End of Friday session — every week",'arm')}
+  ${sec("Posterior Cuff",
+    ex("Band 3-Way Shoulder","2x15",["Light band — full ROM each direction","Don't shrug — scap depressed throughout","Slow and controlled — feel the posterior cuff"],true)
+    +ex("PVC Around the World","2x10",["Arms straight throughout","Slow — feel the shoulder working through full range","Stop if any anterior shoulder discomfort"],true)
+  ,true)}
+  ${sec("Scapular",
+    ex("YTW's","2x15",["Y — reach long overhead, feel lower trap","T — low trap, not upper — squeeze and hold","W — elbows 90, pull back and hold 1s"],true)
+    +ex("Yoga Ball Protraction Rotations","2x6",["Ball under palm — protract scap as you roll out","Control the return — scap stays active","Slow rotation — feel serratus anterior engaging"],true)
+  ,true)}
+  ${sec("Forearm",
+    ex("Forearm Heavy Bat","2x16",["Slow wrist rotation — full ROM both directions","Feel extensors and flexors loading — no momentum"],true)
+    +ex("Gripping — Rice Bucket","1x40s",["Open and close fist — full extension each rep","Finish with finger extensions to balance"],true)
+    +ex("Forearm Extensors","2x10",["Reverse wrist curl or band extension","Balances the flexor-dominant throwing pattern — light load"],true)
+  ,true)}
+`},
+
+pt_a:{tag:"Post Throw — A Day",title:"Post Throw A",arm:true,body:`
+  ${pill("Complete immediately after throwing — before you leave",'arm')}
+  ${sec("Movement Reset",
+    ex("Monster Walks","2x25 yds",["Tuck pelvis — ribcage down","Step wide, controlled — no bouncing","Squeeze glute of stepping leg"],true)
+    +ex("Banded Lateral Walks","2x25 yds",["Stay low — athletic position","Squeeze stepping leg glute throughout"],true)
+    +ex("Split Stance Iso","2:00",["Tuck pelvis — ribcage down, core engaged","Squeeze push leg glute — back hip stays neutral","Breathe — hold, don't grind"],true)
+    +ex("ER/IR Iso","15s · 80%",["80% only — recovery, not training","Elbow at 90 — smooth tension","Hold smooth, release smooth — never force this"],true)
+  ,true)}
+`},
+
+pt_b:{tag:"Post Throw — B Day",title:"Post Throw B",arm:true,body:`
+  ${pill("Complete immediately after throwing — before you leave",'arm')}
+  ${sec("Movement Reset",
+    ex("Reverse Bear Crawls","2x25 yds",["Knees hover 1 inch off ground","Opposite hand and foot move together","Slow and controlled"],true)
+    +ex("Glute Bridge Iso","30s each side",["Drive through heel — squeeze glute hard at top","Pelvis level — free hip doesn't drop"],true)
+    +ex("PVC Around the World","30s",["Arms straight — full shoulder ROM","Move slowly — mobility, not a race"],true)
+    +ex("Waiter Carry","2x25 yds",["KB overhead, palm up — elbow locked, scap depressed","Walk tall — don't side bend"],true)
+  ,true)}
+`},
+
+// ── PHASE 1 LIFTS ──────────────────────────────────────────────────────────────
+p1_mon:{tag:"Phase 1 · Lower A",title:"Monday — Lower A",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Hold quality over load — position and tension are the stimulus")}
+  ${sec("Primer",
+    ex("Medball Hip Toss","2x4",["Hip extension into the toss — load the glute, not the back","Full hip drive — arm follows","Reset and reload each rep — quality over speed"])
+    +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full hip extension — drive through ankle, knee, hip","Squeeze push leg glute at top — hold 5s","Primes the hip extension pattern for throwing"])
+    +ex("Kneeling Sprint","2x3",["Explosive drive from kneeling — fire the hips","Max acceleration out of the start","Drive the front foot down into the ground"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Iso Rack Pull","3x15s",["Push into bar at max intent — bar stays fixed","Full body tension — brace everything","Split stance loaded — pelvis tucked"])
+    +ex("Split Squat","3x8e · 2s down · 10s pause at bottom",["2s down · 10s hold at bottom into reps — own the position","Front knee tracks over 2nd toe","Drive up from the hold with intent"])
+    +ex("SL Isometric Glute Bridge","3x15s",["Drive through heel — squeeze glute hard at top","Pelvis level — don't let free hip drop","Hold the full 15s"])
+  )}
+  ${sec("Supplemental",
+    ex("Palof Press Hold","3x6e · 3s hold",["3s hold — real anti-rotation stimulus","Brace the core — ribcage down, pelvis tucked"])
+    +ex("Copenhagen Plank","3x10s",["Full straight line — don't sag at the hip","Squeeze inner thigh into the bench"])
+    +ex("ASLR Hold","3x6e · 2s pause",["Pause at bottom — feel the hamstring and hip flexor lengthening","Low back stays down"])
+  )}
+`},
+
+p1_tue:{tag:"Phase 1 · Upper A",title:"Tuesday — Upper A",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing — Arm Care A after the session")}
+  ${sec("Primer",
+    ex("Medball Chest Pass","2x4",["Full intent — lower half connects","Arm follows the body"])
+    +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top","Feel the t-spine opening on each rep"])
+  )}
+  ${sec("Primary",
+    ex("BB Overcoming Bench Press Iso","3x10s",["Push against bar at max intent — bar stays fixed","Smooth sustained effort — no jerking","Brace everything"])
+    +ex("DB Bench Press","3x8 · 2s pause at bottom",["2s pause at bottom — feel the chest stretch","Controlled descent — position first always","Drive up with intent — never sacrifice position for load"])
+    +ex("Split Stance SA Rotational Row","3x8e · 2s return",["Split stance loaded — pelvis tucked","Pull to ribcage — squeeze scap 1s at end","2s controlled return"])
+  )}
+  ${sec("Supplemental",
+    ex("PVC Pipe Palof Overcoming Iso","3x5s",["Push max into the pipe — full body tension","Ribcage down, pelvis tucked — hold 5s"])
+    +ex("Split Stance Medball Chop","3x5e",["Hip loads into the chop — not just the arms","Full ROM — high to low"])
+  )}
+`},
+
+p1_thu:{tag:"Phase 1 · Lower B",title:"Thursday — Lower B",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Frontal plane emphasis — lateral load and hip stability")}
+  ${sec("Primer",
+    ex("SL Medball Slam","2x3e",["Single leg — load the hip, slam with intention","Stick the landing — control before going again"])
+    +ex("Banded Marches","2x10",["Tuck pelvis — ribcage down","Drive the knee up — don't let the band rotate the pelvis"])
+    +ex("Flying 10","2x3",["Build up to full speed then hit the 10-yard zone at max velocity","Don't coast through — compete"])
+  )}
+  ${sec("Primary",
+    ex("DB Romanian Deadlift","3x8 · 2s down · 3s hold at bottom",["2s down · 3s hold at bottom — feel the hamstring stretch","Hip hinge — neutral spine throughout","Reset each rep — no bounce"])
+    +ex("Broad Jump / Triple Jump","3x1",["Max distance — load the hip and drive","Stick the landing — absorb and control","Athletic — explosive primer work"])
+    +ex("Dead Bug","3x5e",["Low back glued to floor — no arch","Exhale as arm and leg lower · slow and controlled"])
+  )}
+  ${sec("Supplemental",
+    ex("Landmine Lateral Lunge","3x6e · 4s pause",["Step wide — 4s pause at bottom · feel the inner thigh load","Drive back through the lateral hip"])
+    +ex("Lateral Bound","2x4e",["Load the hip — drive laterally with intent","Stick the landing · control before going again"])
+    +ex("Lateral Triple Extension Wall Iso","3x2 · 10s hold",["Push laterally into wall — full extension","Tall spine · 10s hold — feel the lateral hip loading"])
+  )}
+`},
+
+p1_fri:{tag:"Phase 1 · Upper C",title:"Friday — Upper C",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing — Arm Care B after the session")}
+  ${sec("Primer",
+    ex("MB Overhead Toss","2x3",["Full hip extension — arms follow · fluid motion"])
+    +ex("Broad Jump","2x3",["Load the hips — drive horizontally","Stick the landing — control before going again"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Landmine Press","3x8e · 2s down",["2s controlled descent — position always comes first","Split stance loaded, pelvis tucked","Drive up with intent"])
+    +ex("Single Arm Lat Pulldown","3x5e · 10s pause",["10s pause at full extension into reps — own the end range","Feel the lat and scap at full stretch","Pull with intent from the pause"])
+  )}
+  ${sec("Supplemental",
+    ex("Cable Split Stance Rotational Press","3x8e",["Hip loads into the press — not just the arm","Full rotation through the hip · split stance, pelvis tucked"])
+    +ex("Cable High to Low Rotation","3x6e",["Rotate from high to low — hip drives the movement","Control the return — feel the oblique and hip working together"])
+  )}
+`},
+
+// ── PHASE 2 LIFTS ──────────────────────────────────────────────────────────────
+p2_mon:{tag:"Phase 2 · Lower A",title:"Monday — Lower A",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Tempo is the stimulus — the descent is where the work happens","warn")}
+  ${sec("Primer",
+    ex("Medball Hip Toss","2x4",["Hip extension into the toss — more intent than Phase 1"])
+    +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full hip extension — squeeze glute · hold 5s"])
+    +ex("Kneeling Sprint","2x3",["Max acceleration from kneeling"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Iso Rack Pull","3x8s",["Max intent — bar fixed · primes the posterior chain for eccentric work"])
+    +ex("Split Squat","3x8e · 5s down · explode up",["5s controlled descent — feel the front leg loading under time","Explode up from the bottom — contrast makes the stimulus","Knee tracks over 2nd toe throughout"])
+    +ex("SL Glute Bridge","4x4 · 2s top · 8s lower · 2+ min rest",["2s hold at top — squeeze glute hard","8s controlled lower — this IS the training stimulus","2+ min rest between sets — the 8s demands it"])
+  )}
+  ${sec("Supplemental",
+    ex("Palof Low-to-High","3x8e · slow return",["Slow controlled return — the eccentric core work","Brace throughout"])
+    +ex("Copenhagen Plank","3x15s",["15s hold — build from Phase 1"])
+    +ex("ASLR Hold","3x8e · 2s pause",["2s real pause — low back stays down throughout"])
+  )}
+`},
+
+p2_tue:{tag:"Phase 2 · Upper A",title:"Tuesday — Upper A",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("The slow descent is the work — Arm Care A after the session","warn")}
+  ${sec("Primer",
+    ex("Medball Chest Pass","2x4",["Full intent — lower half connects"])
+    +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top"])
+  )}
+  ${sec("Primary",
+    ex("BB Overcoming Bench Press Iso","3x10s",["Max intent push — smooth sustained effort"])
+    +ex("DB Bench Press","3x6 · 5s down · explode up",["5s controlled descent — keep position controlled throughout","1s pause at bottom before exploding","5s descent is where the work happens"])
+    +ex("Split Stance SA Rotational Row","3x8e · 4s return",["4s controlled return — this is the eccentric work","Don't let the cable yank you back — own the return"])
+  )}
+  ${sec("Supplemental",
+    ex("PVC Pipe Palof Overcoming Iso","3x5s",["Max push — full body tension"])
+    +ex("Split Stance Medball Chop","3x5e · 3s return",["3s controlled return — eccentric core work"])
+  )}
+`},
+
+p2_thu:{tag:"Phase 2 · Lower B",title:"Thursday — Lower B",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Frontal plane emphasis — slow eccentrics, stick every landing","warn")}
+  ${sec("Primer",
+    ex("SL Medball Slam","2x3e",["Load the hip — slam with intention · stick the landing"])
+    +ex("Banded Marches","2x10",["Tuck pelvis — drive the knee up"])
+    +ex("Flying 10","2x3",["Build up to max velocity through the 10-yard zone"])
+  )}
+  ${sec("Primary",
+    ex("Lateral Triple Extension Wall Iso","3x2 · 10s hold",["Max intent — 10s hold · feel the lateral hip loading","Tall spine throughout"])
+    +ex("Landmine Lateral Lunge","3x6e · 5s down",["5s controlled descent into the lunge — feel the inner thigh loading under time","Drive back through the lateral hip"])
+    +ex("Lateral Bound","3x4e · stick landing",["Higher intent than Phase 1 — drive with more power","Stick the landing and control before going again"])
+  )}
+  ${sec("Supplemental",
+    ex("Nordic Lower","2–3x4 · 4–5s descent",["4–5s controlled descent — resist gravity the whole way","Catch at the bottom — don't collapse"])
+    +ex("Box Jumps","3x3",["Loaded hip drive into the jump — max intent","Land soft — absorb with hip and knee","Reset fully before each rep"])
+  )}
+`},
+
+p2_fri:{tag:"Phase 2 · Upper C",title:"Friday — Upper C",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Control every descent — Arm Care B after the session","warn")}
+  ${sec("Primer",
+    ex("MB Overhead Toss","2x3",["Full hip extension — arms follow"])
+    +ex("Broad Jump","3x3",["Max distance — load and drive · stick the landing"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Landmine Press","3x8e · 4s down · explode up",["4s controlled descent — position always comes first","Explode up — contrast the slow descent","Pelvis tucked throughout"])
+    +ex("Single Arm Lat Pulldown","3x6e · 5s return",["5s controlled return to full extension — the eccentric work","Feel the lat and scap through the full range"])
+  )}
+  ${sec("Supplemental",
+    ex("Cable Split Stance Rotational Press","3x8e · 3s return",["3s controlled return — eccentric rotational work","Rotation through the hip, not just the shoulder"])
+    +ex("Cable High to Low Rotation","3x6e",["Rotate from high to low — hip drives the movement","Control the return — feel the oblique and hip working together"])
+  )}
+`},
+
+};
+
+// ── WEEK DATA ──────────────────────────────────────────────────────────────────
+const HIGH='high',MED='med',LOW='low',OFF='off';
+const DN=["MON","TUE","WED","THU","FRI"];
+
+const P1=[
+  {num:1,label:"Base Building — Mon/Wed/Fri Throw",days:[
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · 90 ft",      lift:"p1_mon",pt:"pt_a",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_tue",pt:null,  ac:"armcare_a"},
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · 90 ft",      lift:null,    pt:"pt_b",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_thu",pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · 90 ft",      lift:"p1_fri",pt:"pt_a",ac:"armcare_b"},
+  ]},
+  {num:2,label:"Building — Mon/Wed/Fri Throw",days:[
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · 90 ft",      lift:"p1_mon",pt:"pt_b",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_tue",pt:null,  ac:"armcare_a"},
+    {i:MED, throw:"plyo_mod",        throwLabel:"Moderate Plyo · 120 ft",  lift:null,    pt:"pt_a",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_thu",pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · 120 ft",     lift:"p1_fri",pt:"pt_b",ac:"armcare_b"},
+  ]},
+  {num:3,label:"Intensity Build — Mon/Wed/Fri Throw",days:[
+    {i:MED, throw:"plyo_mod",        throwLabel:"Moderate Plyo · 120 ft",  lift:"p1_mon",pt:"pt_a",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_tue",pt:null,  ac:"armcare_a"},
+    {i:MED, throw:"plyo_mod",        throwLabel:"Moderate Plyo · 120 ft",  lift:null,    pt:"pt_b",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:"p1_thu",pt:null,  ac:null},
+    {i:HIGH,throw:"plyo_high",       throwLabel:"High Plyo · 120 ft",      lift:"p1_fri",pt:"pt_a",ac:"armcare_b"},
+  ]},
+  {num:4,label:"High Intensity Intro — 4 Days",days:[
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · to Feel",    lift:"p1_mon",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high",       throwLabel:"High Plyo · 120+ ft",     lift:"p1_tue",pt:"pt_b",ac:"armcare_a"},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:null,    pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · to Feel",    lift:"p1_thu",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high",       throwLabel:"High Plyo · 120+ ft",     lift:"p1_fri",pt:"pt_b",ac:"armcare_b"},
+  ]},
+];
+
+const P2=[
+  {num:5,label:"Eccentric Intro — High Catch to 120+",days:[
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · to Feel",    lift:"p2_mon",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high",       throwLabel:"High Plyo · 120+ ft",     lift:"p2_tue",pt:"pt_b",ac:"armcare_a"},
+    {i:OFF, throw:null,              throwLabel:"Off",                      lift:null,    pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · to Feel",    lift:"p2_thu",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high",       throwLabel:"High Plyo · 120+ ft",     lift:"p2_fri",pt:"pt_b",ac:"armcare_b"},
+  ]},
+  {num:6,label:"Pulldown Phase — 3 Pulldowns",days:[
+    {i:LOW, throw:"plyo_light",      throwLabel:"Light Plyo · to Feel",            lift:"p2_mon",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high_pull3", throwLabel:"High Plyo · 100+ ft · 3 Pulldowns",lift:"p2_tue",pt:"pt_b",ac:"armcare_a"},
+    {i:OFF, throw:null,              throwLabel:"Off",                              lift:null,    pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light_catch",throwLabel:"Light Plyo · Light Catch",         lift:"p2_thu",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high_pull3", throwLabel:"High Plyo · 100+ ft · 3 Pulldowns",lift:"p2_fri",pt:"pt_b",ac:"armcare_b"},
+  ]},
+  {num:7,label:"Pulldown Build — 5 Pulldowns",days:[
+    {i:LOW, throw:"plyo_light",           throwLabel:"Light Plyo · to Feel",                   lift:"p2_mon",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high_pull5",      throwLabel:"High Plyo · 100+ ft · 5 Pulldowns",      lift:"p2_tue",pt:"pt_b",ac:"armcare_a"},
+    {i:OFF, throw:null,                   throwLabel:"Off",                                     lift:null,    pt:null,  ac:null},
+    {i:LOW, throw:"plyo_light_catch",     throwLabel:"Light Plyo · Light Catch",                lift:"p2_thu",pt:"pt_a",ac:null},
+    {i:HIGH,throw:"plyo_high_pull5_mound",throwLabel:"High Plyo · 100+ ft · 5 Pulldowns · Mound",lift:"p2_fri",pt:"pt_b",ac:"armcare_b"},
+  ]},
+  {num:8,label:"Deload — Mon/Wed/Fri · Honor It",days:[
+    {i:MED, throw:"plyo_deload",     throwLabel:"Deload · Medium · 90 ft",         lift:"p2_mon",pt:"pt_a",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                              lift:"p2_tue",pt:null,  ac:"armcare_a"},
+    {i:LOW, throw:"plyo_deload",     throwLabel:"Deload · Light · 90 ft",           lift:null,    pt:"pt_b",ac:null},
+    {i:OFF, throw:null,              throwLabel:"Off",                              lift:"p2_thu",pt:null,  ac:null},
+    {i:MED, throw:"plyo_deload",     throwLabel:"Deload · Medium · Long Toss",      lift:"p2_fri",pt:"pt_a",ac:"armcare_b"},
+  ]},
+];
+
+const LIFT_LABEL={
+  p1_mon:"Lower A",p1_tue:"Upper A",p1_thu:"Lower B",p1_fri:"Upper C",
+  p2_mon:"Lower A",p2_tue:"Upper A",p2_thu:"Lower B",p2_fri:"Upper C"
+};
+
+function buildWeeks(weeks,containerId){
+  const container=document.getElementById(containerId);
+  weeks.forEach(week=>{
+    const block=document.createElement('div');
+    block.className='week-block';
+    const hdr=document.createElement('div');
+    hdr.className='week-header';
+    hdr.innerHTML=`<span class="week-num">WEEK ${week.num}</span><span class="week-label">${week.label}</span>${week.note?`<span class="week-note">${week.note}</span>`:''}`;
+    block.appendChild(hdr);
+    const tbl=document.createElement('table');
+    tbl.className='week-table';
+    const thead=document.createElement('thead');
+    const hr=document.createElement('tr');
+    hr.innerHTML='<td class="row-label"></td>';
+    week.days.forEach((d,i)=>{hr.innerHTML+=`<th class="day-header day-${d.i}">${DN[i]}</th>`;});
+    thead.appendChild(hr);tbl.appendChild(thead);
+    const ROWS=[{l:"PREP",t:"prep"},{l:"THROW",t:"throw"},{l:"LIFT",t:"lift"},{l:"POST THROW",t:"pt"},{l:"ARM CARE",t:"ac"}];
+    const tbody=document.createElement('tbody');
+    ROWS.forEach(row=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td class="row-label">${row.l}</td>`;
+      week.days.forEach((d,ci)=>{
+        const td=document.createElement('td');
+        const bg=ci%2===0?'background:#111':'background:#131313';
+        if(row.t==='prep'){
+          if(d.lift||d.throw){td.className='dc prep-cell clickable';td.textContent='Tap to view';td.addEventListener('click',()=>openModal('prep'));}
+          else{td.className='dc off-cell';td.textContent='—';}
+        } else if(row.t==='throw'){
+          if(d.throw){td.className='dc clickable';td.style.cssText=bg;td.textContent=d.throwLabel||'Tap to view';td.addEventListener('click',()=>openModal(d.throw));}
+          else{td.className='dc off-cell';td.textContent='—';}
+        } else if(row.t==='lift'){
+          if(d.lift){td.className='dc clickable';td.style.cssText=bg;td.textContent=LIFT_LABEL[d.lift]||d.lift;td.addEventListener('click',()=>openModal(d.lift));}
+          else{td.className='dc off-cell';td.textContent='—';}
+        } else if(row.t==='pt'){
+          if(d.pt){td.className='dc arm-cell arm-clickable';td.textContent=d.pt==='pt_a'?'Post Throw A':'Post Throw B';td.addEventListener('click',()=>openModal(d.pt));}
+          else{td.className='dc off-cell';td.textContent='—';}
+        } else if(row.t==='ac'){
+          if(d.ac){td.className='dc arm-cell arm-clickable';td.textContent=d.ac==='armcare_a'?'Arm Care A':'Arm Care B';td.addEventListener('click',()=>openModal(d.ac));}
+          else{td.className='dc off-cell';td.textContent='—';}
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);block.appendChild(tbl);container.appendChild(block);
+  });
+}
+
+buildWeeks(P1,'wc_p1');
+buildWeeks(P2,'wc_p2');
+
+function openModal(key){
+  const d=C[key];if(!d)return;
+  document.getElementById('modal').className='modal'+(d.arm?' arm-modal':'');
+  document.getElementById('modal-tag').textContent=d.tag;
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-body').innerHTML=d.body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOv(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function showPhase(id,btn){
+  document.querySelectorAll('.phase-block').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+</script>
+</body>
+</html>
