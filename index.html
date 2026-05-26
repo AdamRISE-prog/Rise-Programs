@@ -438,11 +438,17 @@ footer span { color:var(--green); }
 </div><!-- end portal -->
 
 <script>
-const PASS = 'RB26!';
+const PASS_HASH = '0458895f6fd49f3c989d0257e3d00181cc45fa22e74e8d8d556bd4e0a60643aa';
 
-function login() {
+async function sha256(msg) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function login() {
   const val = document.getElementById('pwInput').value;
-  if (val === PASS) {
+  const hash = await sha256(val);
+  if (hash === PASS_HASH) {
     sessionStorage.setItem('rbAuth', '1');
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('portal').style.display = 'block';
