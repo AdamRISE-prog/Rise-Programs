@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rise Baseball Co. — Gavin Maines Return to Throw</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#5DC226;--green-dark:#3d8a18;--black:#080808;
+  --card:#111111;--card2:#161616;--card3:#1a1a1a;
+  --border:#222222;--border2:#2a2a2a;
+  --white:#ffffff;--off-white:#cccccc;--dim:#666666;
+  --high:#c0392b;--med:#c8960a;--low:#2a7a0a;
+  --off-bg:#0d0d0d;--off-text:#2a2a2a;
+  --arm:#7b2fbf;--arm2:#4a1a73;--armt:#d4a0ff;
+  --p1:#1a6abf;--p2:#c8960a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh}
+.site-header{background:var(--black);border-bottom:3px solid var(--green);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.logo-img{height:52px;width:auto}
+.header-right{text-align:right}
+.header-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.header-name span{color:var(--green)}
+.header-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;color:var(--dim);letter-spacing:.16em;text-transform:uppercase;margin-top:3px}
+.hero{background:linear-gradient(135deg,#0a0a0a 0%,#0f1a0a 50%,#080808 100%);border-bottom:1px solid var(--border);padding:40px 40px 32px}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:48px;color:var(--white);letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.hero-title span{color:var(--green)}
+.hero-divider{width:60px;height:4px;background:var(--green);margin:14px 0}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:20px}
+.hero-meta-item{display:flex;flex-direction:column;gap:3px}
+.hero-meta-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.hero-meta-value{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);letter-spacing:.04em}
+.phase-nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--card)}
+.pnav-btn{flex:1;padding:12px 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;background:none;color:var(--dim);border-bottom:3px solid transparent;transition:all .15s}
+.pnav-btn:hover{color:var(--off-white);background:var(--card2)}
+.pnav-btn.active{color:var(--green);border-bottom-color:var(--green)}
+.phase-block{display:none}.phase-block.active{display:block}
+.section{padding:32px 40px;border-bottom:1px solid var(--border)}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border2)}
+.goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.goal-card{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--green);padding:18px 20px}
+.goal-card-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.goal-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #1c1c1c;font-size:13px;color:var(--off-white);line-height:1.4}
+.goal-item:last-child{border-bottom:none}
+.goal-item::before{content:"→";color:var(--green);font-weight:700;font-size:11px;margin-top:2px;flex-shrink:0}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.focus-card{background:var(--card);border:1px solid var(--border);padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
+.focus-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--border2);line-height:1;flex-shrink:0}
+.focus-content{display:flex;flex-direction:column;gap:4px}
+.focus-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--white);letter-spacing:.06em;text-transform:uppercase}
+.focus-desc{font-size:12px;color:var(--dim);line-height:1.4}
+.legend-bar{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px}
+.legend-item{flex:1;padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px}
+.legend-item .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.l-high{background:var(--high);color:#fff}.l-med{background:var(--med);color:#fff}
+.l-low{background:var(--low);color:#fff}.l-off{background:#141414;color:var(--dim)}
+.week-block{margin-bottom:24px}
+.week-header{display:flex;align-items:center;gap:14px;padding:8px 0 6px;border-bottom:2px solid var(--green);margin-bottom:0}
+.week-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:var(--green);letter-spacing:.04em;line-height:1}
+.week-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase}
+.week-note{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;color:var(--armt);letter-spacing:.1em;text-transform:uppercase;margin-left:auto}
+.week-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.week-table th,.week-table td{border:1px solid var(--border);text-align:center;vertical-align:middle;padding:0}
+.row-label{width:68px;background:#0e0e0e;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);padding:9px 4px}
+.day-header{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 6px}
+.day-high{background:var(--high);color:#fff}.day-med{background:var(--med);color:#fff}
+.day-low{background:var(--low);color:#fff}.day-off{background:var(--off-bg);color:var(--off-text)}
+.dc{font-size:11px;font-family:'Barlow',sans-serif;font-weight:500;color:var(--off-white);padding:8px 8px;line-height:1.3;background:#111}
+.dc:nth-child(even){background:#131313}
+.off-cell{color:#222 !important;background:#0d0d0d !important}
+.prep-cell{font-style:italic;color:var(--green) !important;font-size:10px;font-weight:600;background:#0f0f0f !important}
+.arm-cell{font-style:italic;color:var(--armt) !important;font-size:10px;font-weight:600;background:#0d0b12 !important}
+.clickable{cursor:pointer;transition:background .15s}
+.clickable:hover{background:#1a2a10 !important}
+.clickable::after{content:"▾";display:block;font-size:9px;color:var(--green);margin-top:3px;opacity:.7}
+.arm-clickable{cursor:pointer;transition:background .15s}
+.arm-clickable:hover{background:#1a0d2e !important}
+.arm-clickable::after{content:"▾";display:block;font-size:9px;color:var(--armt);margin-top:3px;opacity:.7}
+.phase-banner{padding:14px 40px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border)}
+.pb-p1{background:linear-gradient(90deg,#0f2d52,#080808)}
+.pb-p2{background:linear-gradient(90deg,#3d2a03,#080808)}
+.pb-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:40px;line-height:1}
+.pb-p1 .pb-num{color:var(--p1)}.pb-p2 .pb-num{color:var(--p2)}
+.pb-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.pb-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.pb-intent{font-size:12px;color:#888;line-height:1.5;margin-top:6px;max-width:680px}
+.pb-intent strong{color:var(--green)}
+.post-throw-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.pt-block{padding:18px 22px}
+.pt-block:first-child{background:var(--card);border-right:1px solid var(--border)}
+.pt-block:last-child{background:var(--card2)}
+.pt-day-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);letter-spacing:.08em;margin-bottom:12px}
+.pt-item{font-size:12px;color:var(--off-white);padding:5px 0;border-bottom:1px solid #1c1c1c;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.pt-item:last-child{border-bottom:none}
+.pt-item::before{content:"→";color:var(--green);font-weight:700;font-size:10px;flex-shrink:0;margin-top:2px}
+.site-footer{border-top:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.footer-brand span{color:var(--green)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border2);border-top:3px solid var(--green);width:100%;max-width:680px;max-height:88vh;overflow-y:auto}
+.modal.arm-modal{border-top-color:var(--arm)}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);z-index:10}
+.modal-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:3px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:var(--white);letter-spacing:.04em;text-transform:uppercase;line-height:1.1}
+.modal-close{background:none;border:1px solid var(--border2);color:var(--dim);font-size:18px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:3px;flex-shrink:0;margin-left:16px;transition:all .15s}
+.modal-close:hover{border-color:var(--green);color:var(--green)}
+.modal-body{padding:20px 24px 28px}
+.modal-sec{margin-bottom:22px}.modal-sec:last-child{margin-bottom:0}
+.modal-sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border2)}
+.modal-sec-title.arm-sec{color:var(--armt)}
+.info-pill{background:#0f1f08;border:1px solid #2a5a10;color:#8fcc60;font-size:12px;padding:8px 14px;border-radius:3px;margin-bottom:14px;line-height:1.5}
+.info-pill.arm-pill{background:#1a0d2e;border-color:var(--arm2);color:var(--armt)}
+.info-pill.warn-pill{background:#1a1000;border-color:#7a5a00;color:#f5c842}
+.ex-card{border:1px solid var(--border2);margin-bottom:8px;border-radius:2px;overflow:hidden}
+.ex-card.arm-card{border-color:var(--arm2)}
+.ex-card-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:var(--card2);gap:10px}
+.ex-card-header:hover{background:var(--card3)}
+.ex-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--white);letter-spacing:.04em;flex:1}
+.ex-sets{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--green);white-space:nowrap;display:flex;align-items:center;gap:4px}
+.arm-card .ex-sets{color:var(--armt)}
+.ex-expand{color:var(--dim);font-size:13px;flex-shrink:0}
+.ex-details{display:none;padding:12px 14px 14px;background:var(--card);border-top:1px solid var(--border)}
+.ex-card.open .ex-details{display:block}
+.ex-card.open .ex-expand{transform:rotate(180deg)}
+.cue-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.cue-item{font-size:12px;color:var(--off-white);padding:4px 0;border-bottom:1px solid #1c1c1c;line-height:1.4}
+.cue-item:last-child{border-bottom:none}
+.simple-list{list-style:none;padding:0}
+.simple-list li{font-size:12px;color:var(--off-white);padding:4px 0 4px 14px;border-bottom:1px solid #1c1c1c;line-height:1.4;position:relative}
+.simple-list li::before{content:"·";position:absolute;left:0;color:var(--green);font-weight:900}
+.simple-list li:last-child{border-bottom:none}
+@media(max-width:700px){
+  .site-header{padding:12px 20px}.hero{padding:24px 20px 20px}.hero-title{font-size:32px}
+  .section{padding:20px}.goals-grid,.focus-grid{grid-template-columns:1fr}
+  .phase-banner{padding-left:20px;padding-right:20px}
+  .post-throw-grid{grid-template-columns:1fr}
+  .pt-block:first-child{border-right:none;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="logo-img" src="../rise_logo.png" alt="Rise Baseball Co.">
+  <div class="header-right">
+    <div class="header-name"><span>Gavin</span> Maines</div>
+    <div class="header-sub">16-Week Return to Throw</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-title"><span>Return to Throw</span> — Post Tommy John</div>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-label">Athlete</span><span class="hero-meta-value">Gavin Maines</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Level</span><span class="hero-meta-value">College</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Surgery</span><span class="hero-meta-value">Tommy John Reconstruction</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Block</span><span class="hero-meta-value">Weeks 1–16</span></div>
+  </div>
+</div>
+
+<div style="background:#1a0808;border:1px solid #7a1e13;border-left:4px solid #c0392b;padding:14px 20px;font-size:13px;color:#cccccc;line-height:1.6">
+  <strong style="color:#ff6b5a;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase">Arm Health First:</strong> Everything in this program is designed around protecting the elbow. If anything feels off — sharpness, clicking, unexpected fatigue — stop immediately and communicate. Do not push through joint pain. The program can adjust. The surgery cannot be undone.
+</div>
+<div style="background:#0d1a08;border:1px solid #3d8a18;border-left:4px solid #5DC226;padding:14px 20px;font-size:13px;color:#cccccc;line-height:1.6">
+  <strong style="color:#5DC226;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase">Arm Care Note:</strong> Arm care runs every Mon (A), Tue (B), Thu (A), Fri (B) — to feel. If volume is too high, communicate it and we adjust. Do not white-knuckle through it.
+</div>
+
+<div class="phase-nav">
+  <button class="pnav-btn active" onclick="showPhase('p1',this)">Phase 1 — Isometric · Weeks 1–8</button>
+  <button class="pnav-btn" onclick="showPhase('p2',this)">Phase 2 — Eccentric · Weeks 9–16</button>
+</div>
+
+<div class="section">
+  <div class="section-title">Goals &amp; Program Structure</div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-card-title">Return to Throw Goals</div>
+      <div class="goal-item">Full return to the mound — live BP and pen work by week 15–16</div>
+      <div class="goal-item">Arm health over velocity — mechanics and tissue tolerance come before output</div>
+      <div class="goal-item">Build a college-ready body — strength, stability, and arm care that can handle volume</div>
+      <div class="goal-item">Progressive throwing load — every week builds on the last, no skipping ahead</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-card-title">Block Structure</div>
+      <div class="goal-item">Weeks 1–6: Distance toss program — 25ft building to 90ft. 3x/week throwing.</div>
+      <div class="goal-item">Week 7: Deload — distance protocol, lighter volume</div>
+      <div class="goal-item">Week 8: Long toss + first mound work at 75% intensity</div>
+      <div class="goal-item">Weeks 9–13: Progressive mound work — 90% to 100%, full arsenal</div>
+      <div class="goal-item">Week 14: Deload — prepare the arm for live work</div>
+      <div class="goal-item">Weeks 15–16: Pen work, bullpen, and live BP — full return</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Program Focus Areas</div>
+  <div class="focus-grid">
+    <div class="focus-card"><div class="focus-num">01</div><div class="focus-content"><div class="focus-title">Arm Tolerance</div><div class="focus-desc">The arm must be rebuilt gradually. Every throwing session has a purpose — no session is wasted, no session is skipped without communication.</div></div></div>
+    <div class="focus-card"><div class="focus-num">02</div><div class="focus-content"><div class="focus-title">Lift Foundation</div><div class="focus-desc">Isometric phase builds joint stiffness and movement patterns. Eccentric phase accumulates tissue stress. College options are available — talk to your coach before adding.</div></div></div>
+    <div class="focus-card"><div class="focus-num">03</div><div class="focus-content"><div class="focus-title">Arm Care Protocol</div><div class="focus-desc">Intensive arm care program runs alongside this throwing build. Do not over do it — the protocol is designed to complement the throwing load, not add to it.</div></div></div>
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase-block active" id="p1">
+  <div class="phase-banner pb-p1">
+    <div class="pb-num">01</div>
+    <div class="pb-info">
+      <div class="pb-name">Isometric Foundation</div>
+      <div class="pb-sub">Weeks 1–8 · Mon/Tue/Thu/Fri Lift · Andrews Return-to-Throw Protocol</div>
+      <div class="pb-intent"><strong>Goal:</strong> Build joint stiffness, establish movement patterns, prime the nervous system. Throwing builds from 25ft to mound work by week 8. Lift runs Mon/Tue/Thu/Fri every week.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Weekly Schedule</div>
+    <div class="legend-bar">
+      <div class="legend-item l-high"><span class="dot" style="background:#ff6b5a"></span>High / Mound</div>
+      <div class="legend-item l-med"><span class="dot" style="background:#f5c842"></span>Medium / 75%</div>
+      <div class="legend-item l-low"><span class="dot" style="background:#5DC226"></span>Light / Toss</div>
+      <div class="legend-item l-off"><span class="dot" style="background:#333"></span>Off</div>
+    </div>
+    <div id="wc_p1"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Post Throw Reference</div>
+    <div class="post-throw-grid">
+      <div class="pt-block">
+        <div class="pt-day-label">A DAY — Mon &amp; Thu</div>
+        <div class="pt-item">Monster Walks — 2x25 yds</div>
+        <div class="pt-item">Banded Lateral Walks — 2x25 yds</div>
+        <div class="pt-item">Split Stance Iso (tuck pelvis) — 2 min</div>
+        <div class="pt-item">ER/IR 15s 80% Iso</div>
+      </div>
+      <div class="pt-block">
+        <div class="pt-day-label">B DAY — Tue &amp; Fri</div>
+        <div class="pt-item">Reverse Bear Crawls — 2x25 yds</div>
+        <div class="pt-item">Glute Bridge Iso — 30s each side</div>
+        <div class="pt-item">PVC Around the World — 30s</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase-block" id="p2">
+  <div class="phase-banner pb-p2">
+    <div class="pb-num">02</div>
+    <div class="pb-info">
+      <div class="pb-name">Eccentric / Volume</div>
+      <div class="pb-sub">Weeks 9–16 · Mon/Tue/Thu/Fri Lift · Mound Work Progression</div>
+      <div class="pb-intent"><strong>Goal:</strong> Accumulate tissue stress through slow eccentrics. Runs alongside mound progression — communicate arm soreness location precisely. Week 14 is a deload before live work. Weeks 15–16 are full return.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Weekly Schedule</div>
+    <div class="legend-bar">
+      <div class="legend-item l-high"><span class="dot" style="background:#ff6b5a"></span>High / Mound</div>
+      <div class="legend-item l-med"><span class="dot" style="background:#f5c842"></span>Medium / 75%</div>
+      <div class="legend-item l-low"><span class="dot" style="background:#5DC226"></span>Light / Toss</div>
+      <div class="legend-item l-off"><span class="dot" style="background:#333"></span>Off</div>
+    </div>
+    <div id="wc_p2"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Post Throw Reference</div>
+    <div class="post-throw-grid">
+      <div class="pt-block">
+        <div class="pt-day-label">A DAY — Mon &amp; Thu</div>
+        <div class="pt-item">Monster Walks — 2x25 yds</div>
+        <div class="pt-item">Banded Lateral Walks — 2x25 yds</div>
+        <div class="pt-item">Split Stance Iso (tuck pelvis) — 2 min</div>
+        <div class="pt-item">ER/IR 15s 80% Iso</div>
+      </div>
+      <div class="pt-block">
+        <div class="pt-day-label">B DAY — Tue &amp; Fri</div>
+        <div class="pt-item">Reverse Bear Crawls — 2x25 yds</div>
+        <div class="pt-item">Glute Bridge Iso — 30s each side</div>
+        <div class="pt-item">PVC Around the World — 30s</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOv(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div><div class="modal-tag" id="modal-tag"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand"><span>Rise Baseball Co.</span> — Built to Last.</div>
+  <div class="footer-brand">Gavin Maines — Return to Throw Program</div>
+</footer>
+
+<script>
+function ex(name,sets,cues,arm=false){
+  return `<div class="ex-card${arm?' arm-card':''}"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">${name}</span><span class="ex-sets">${sets}</span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-label">Coaching Cues</div>${cues.map(c=>`<div class="cue-item">${c}</div>`).join('')}</div></div>`;
+}
+function sec(title,body,arm=false){
+  return `<div class="modal-sec"><div class="modal-sec-title${arm?' arm-sec':''}">${title}</div>${body}</div>`;
+}
+function pill(t,type=''){return `<div class="info-pill${type?' '+type+'-pill':''}">${t}</div>`;}
+function slist(items){return `<ul class="simple-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul>`;}
+
+const C={
+
+prep:{tag:"Pre-Session",title:"Prep Protocol",arm:false,body:`
+  ${pill("Complete before ALL throwing and lifting — every session. Very important while running an intensive arm care program.")}
+  ${sec("Tissue Work",
+    ex("Foam Roll","Full body — big muscles",["Upper back, legs, lats — 20-30s per area","Pause on tight spots — breathe into them"])
+    +ex("Lacrosse Ball","20s–1:00 per spot",["Small muscles — chest, traps, low traps, rear delts, hips, hip flexors, triceps","Any knots or areas of discomfort — pin and breathe"])
+    +ex("Psoas Release","30s–1:00",["Breathe into the hip — release comes from relaxation, not force","Hip flexor stiffness limits hip extension and separation"])
+  )}
+  ${sec("Mobility",
+    ex("Couch Stretch","2x1 min each side",["Deep hip flexor — knee against the wall, tall spine","Don't arch the low back — tuck the pelvis slightly"])
+    +ex("Pigeon Stretch","2x30s each side",["Glute and posterior hip — sit into it","Breathe and relax — don't force the hip down"])
+    +ex("Foam Roller Upper Back Extension","2:00",["Mid-thoracic across the roller — arms crossed or behind head","Breathe out as you extend — feel the chest open"])
+    +ex("Foam Roll IR","2x5 · 5s hold each",["Internal rotation at end range — own it","Critical for arm deceleration health post-TJ"])
+    +ex("Back Bridge","2x20s",["Full hip extension — squeeze the glutes hard","Keeps the posterior chain online"])
+  )}
+  ${sec("Activation",
+    ex("Banded T-Spine Openers / Water Bag T-Spine Stability","2x8",["Open the chest — this is where separation starts","Slow and controlled — feel the thoracic rotation"])
+    +ex("Triple Extension Sprinter Iso","5 reps · 3s hold",["Full ankle, knee, hip extension — don't cheat the top","Primes the lower half for explosive output"])
+    +ex("90/90 Front Leg Lift Hold","3s hold · 2x5",["Own the hip flexor — load and hold","This is your lead leg — train it"])
+    +ex("90/90 Hip Switches","2x6e — slow and controlled",["Move through both positions with control","Feel the hip rotate — don't just collapse through"])
+    +ex("Prone ER Scap Tip","2x3 · 5s hold",["Arm at 90, tip the scap back as you rotate into ER","Hold the top — don't rush out"])
+  )}
+`},
+
+dynamic:{tag:"Warm Up",title:"Dynamic Warm Up",arm:false,body:`
+  ${pill("Same every session — never skip, never abbreviate")}
+  ${sec("Linear — 20 Yards (Everything is a 10-yard jog)",
+    slist(["Knee hugs with calf raise","Quad pull","Scoops (scoop the grass)","Frankensteins","Lateral lunge","World's greatest stretch","Jog out / backpedal back","High knees to 10-yard jog","A skips to 10-yard jog","Karaoke — fire your hips","Lateral bounds","Broad jump — 1x4"])
+  )}
+  ${sec("Upper Body",
+    slist(["Back slappers — 10 sec","Arm swings up and down — 10 sec","90/90 ER/IR — 10 sec","Overhead press with scap reach — 10 sec","Scap pinch rows — 10 sec","Spread out rotations"])
+  )}
+`},
+
+armcare_a:{tag:"Arm Care",title:"Arm Care A — Strength Focus",arm:true,body:`
+  ${pill("Monday & Thursday — higher weight, lower volume. To feel. Communicate if too much.","arm")}
+  ${sec("Posterior Cuff",
+    ex("3-Way Shoulder Iso","2x20s — Heavy band",["Positions: 0°, 45°, 90° — max tension at each","Build into the end range — don't cheat the position"],true)
+    +ex("Banded KB Waiter Carry","2x15 yds",["Scap packed down and in — hold it there the whole walk","The KB tests the shoulder — own the position"],true)
+  ,true)}
+  ${sec("Scapular",
+    ex("Slider Bear Crawls","2x10 yds",["Sliders under feet — crawl forward on hands","Scap takes all the load — be honest here"],true)
+    +ex("YTW Scap Iso","2x20s — Hold each",["Y, T, W — hold each position for 20 full seconds","Squeeze the low traps — not the upper trap"],true)
+  ,true)}
+  ${sec("Forearm",
+    ex("Forearm Iso","2x20s — Max tension",["Both directions: flexion and extension","Wrist in neutral — max isometric hold"],true)
+    +ex("Dead Hang","1x60s",["Full passive hang — let the shoulder decompress","Recovery and strength at the same time"],true)
+  ,true)}
+`},
+
+armcare_b:{tag:"Arm Care",title:"Arm Care B — Volume Focus",arm:true,body:`
+  ${pill("Tuesday & Friday — moderate weight, higher volume. To feel. Adjust if needed.","arm")}
+  ${sec("Posterior Cuff",
+    ex("Band 3-Way Shoulder","2x15 each position",["0°, 45°, 90° — control every rep","Slow return — the eccentric builds the tissue"],true)
+    +ex("PVC Around the World","2x10",["Full shoulder circle — feel every degree","Smooth and controlled the whole way"],true)
+  ,true)}
+  ${sec("Scapular",
+    ex("YTW's","2x15 reps each",["Full Y, T, W — squeeze the low trap at the top","Don't shrug — if upper trap takes over, lighten load"],true)
+    +ex("Yoga Ball Protraction Rotations","2x6",["Hands on the ball — protract the scap and rotate","Feel the serratus — this is the muscle that keeps the scap down"],true)
+  ,true)}
+  ${sec("Forearm",
+    ex("Forearm Heavy Bat","2x16",["Full range — heavy bat wrist curls","Control the descent — the eccentric matters"],true)
+    +ex("Gripping / Rice Bucket","1x40s",["Full grip work — squeeze, open, squeeze"],true)
+    +ex("Forearm Extensors","2x10",["Extension against resistance — protect the elbow. Do not skip."],true)
+  ,true)}
+`},
+
+pt_a:{tag:"Post Throw",title:"Post Throw — A Day",arm:true,body:`
+  ${pill("A Day — Mon & Thu. Do this immediately after throwing.","arm")}
+  ${sec("Post Throw A Protocol",
+    ex("Monster Walks","2x25 yds",["Band around ankles — stay low, stay wide","Hip abductors are the shock absorbers for the landing leg"],true)
+    +ex("Banded Lateral Walks","2x25 yds",["Stay athletic, stay low","Hip health = arm health"],true)
+    +ex("Split Stance Iso — Tuck Pelvis","2 minutes",["Tuck the pelvis — posterior pelvic tilt","Front leg is a wall — feel the back hip flexor stretch"],true)
+    +ex("ER/IR 80% Iso","Hold 15s — both positions",["External rotation hold first, then internal","80% effort — not max, not easy"],true)
+  ,true)}
+`},
+
+pt_b:{tag:"Post Throw",title:"Post Throw — B Day",arm:true,body:`
+  ${pill("B Day — Tue & Fri. Do this immediately after throwing.","arm")}
+  ${sec("Post Throw B Protocol",
+    ex("Reverse Bear Crawls","2x25 yds",["Hands and feet — crawl backwards","Scapular stability under load"],true)
+    +ex("Glute Bridge Iso","30s each side — Single leg",["Drive through the heel — full hip extension","Single leg: the landing leg is the focus"],true)
+    +ex("PVC Around the World","30s",["Smooth shoulder circle — feel every degree","Decompression and maintenance"],true)
+  ,true)}
+`},
+
+throw_toss_45:{tag:"Throwing",title:"Short Toss — Arm Tolerance",arm:false,body:`
+  ${pill("Early return to throw — arm tolerance phase. No effort, just movement.")}
+  ${sec("Distance Protocol",
+    ex("25ft Warm-Up","5 reps",["Easy — just get the arm moving","No intent, no effort","Does the arm feel comfortable?"])
+    +ex("45ft","5 reps",["Easy rhythm — feel the arm loosen","Smooth delivery, minimal effort","If 45ft feels heavy, back to 25ft and communicate"])
+  )}
+  ${sec("Session Notes",slist([
+    "Every rep should feel comfortable — this is a welfare check, not training",
+    "If anything in the elbow or shoulder feels off, stop immediately",
+    "Post throw is critical right now — do not skip it",
+    "You are building tolerance, not arm strength. That comes later."
+  ]))}
+`},
+
+throw_toss_60:{tag:"Throwing",title:"Building Distance — 25–60ft",arm:false,body:`
+  ${pill("Building arm tolerance — stay comfortable at each distance before progressing.")}
+  ${sec("Distance Protocol",
+    ex("25ft","5 reps",["Easy warm-up"])
+    +ex("45ft","5 reps",["Light effort — comfortable"])
+    +ex("60ft","10 reps",["Smooth delivery pattern — no max effort","Feel the arm extend naturally","Back off if it doesn't feel loose"])
+  )}
+  ${sec("Session Notes",slist([
+    "Only move to the next distance when the current one feels completely comfortable",
+    "No max intent — this is arm building, not arm testing",
+    "Communicate any elbow or shoulder discomfort immediately"
+  ]))}
+`},
+
+throw_toss_75:{tag:"Throwing",title:"Building Distance — 25–75ft",arm:false,body:`
+  ${pill("Distance building — comfortable progression to 75ft.")}
+  ${sec("Distance Protocol",
+    ex("25ft","5 reps",["Warm-up"])
+    +ex("45ft","5 reps",["Light"])
+    +ex("60ft","10 reps",["Smooth"])
+    +ex("75ft","10–15 reps",["Feel the pull at distance — don't fight it","Smooth delivery — let the arm carry the throw","Stay within what feels good"])
+  )}
+  ${sec("Session Notes",slist([
+    "75ft is a milestone — arm should feel loose and comfortable to reach it",
+    "If 75ft feels strained, hold at 60ft and communicate",
+    "You are building the foundation that carries the rest of this program"
+  ]))}
+`},
+
+throw_toss_90:{tag:"Throwing",title:"Building to 90ft",arm:false,body:`
+  ${pill("Approaching full distance — keep the effort easy, let the arm breathe.")}
+  ${sec("Distance Protocol",
+    ex("25ft","5 reps",["Warm-up"])
+    +ex("45ft","5 reps",["Light"])
+    +ex("60ft","10 reps",["Smooth"])
+    +ex("75ft","15 reps",["Comfortable"])
+    +ex("90ft","10–15 reps",["90ft is a landmark — the arm has earned this","Easy effort — don't muscle it","Feel extended, not forced"])
+  )}
+  ${sec("Session Notes",slist([
+    "Only reach 90ft if 75ft feels completely comfortable",
+    "Light-moderate effort at 90ft — this is not max intensity",
+    "This distance prepares you for long toss and mound work ahead"
+  ]))}
+`},
+
+throw_deload:{tag:"Throwing",title:"Deload — Distance Protocol",arm:false,body:`
+  ${pill("Deload week. The arm adapts during recovery. Honor this.")}
+  ${sec("Distance Protocol",
+    ex("40ft","5 reps",["Easy arm warm-up"])
+    +ex("45ft","5 reps",["Stay comfortable"])
+    +ex("60ft","10 reps",["Smooth — no effort"])
+    +ex("75ft","15 reps",["Light"])
+    +ex("90ft","15 reps",["Easy effort — just maintain the range","No pushing through fatigue"])
+    +ex("60ft","10 reps",["Come back in easy — flush the arm out","Feel good on the last rep"])
+  )}
+  ${sec("Deload Notes",slist([
+    "This week is programmed — it is not optional",
+    "The adaptation from previous weeks happens now",
+    "Come out of this week feeling fresh, not depleted",
+    "Communicate how the arm felt — this sets the tone for the next block"
+  ]))}
+`},
+
+throw_lt_light:{tag:"Throwing",title:"Long Toss — Light Recovery",arm:false,body:`
+  ${pill("Recovery day — move the arm, don't tax it.")}
+  ${sec("Session",
+    ex("Long Toss","Easy distance",["Go to a comfortable distance — don't chase it","Arm should feel loose and good throughout","No max effort — this is maintenance and recovery"])
+    +ex("Intensity","Light",["This session exists to keep the arm moving without adding fatigue","Stop before the arm feels taxed"])
+  )}
+  ${sec("Notes",slist([
+    "If you felt yesterday's session in your arm today — go lighter or shorter",
+    "These recovery sessions matter as much as the main throw days",
+    "Communicate any lingering soreness from high-intent days"
+  ]))}
+`},
+
+throw_easy_catch:{tag:"Throwing",title:"Easy Catch — Arm Maintenance",arm:false,body:`
+  ${pill("Light arm maintenance — comfortable distances, easy effort.")}
+  ${sec("Session",
+    ex("Easy Catch","Short distances — 25–60ft",["Wherever it feels good","Easy, conversational-pace throwing","Arm should feel comfortable the entire time"])
+  )}
+  ${sec("Notes",slist([
+    "This is not training — it is maintenance",
+    "If the arm feels tired, shorten or skip with communication",
+    "These days keep the arm loose for main throw sessions"
+  ]))}
+`},
+
+throw_lt_75:{tag:"Throwing",title:"Long Toss + Mound — 75% Intent",arm:false,body:`
+  ${pill("Mound work begins. 75% intent — command over velocity. This is a landmark.")}
+  ${sec("Session",
+    ex("Long Toss","Light",["Arm up to comfortable distance","Easy effort — this is prep for the mound"])
+    +ex("Mound / Flat Ground","35–40 pitches · 75%",["75% intent — controlled and purposeful","Feel the delivery, don't force velo","Command is the goal — not velocity"])
+    +ex("Pitch Types","FB · CH · Easy Breaking",["Fastball feel first","Changeup with same arm path","Breaking ball — easy rotation, no grip force"])
+  )}
+  ${sec("Notes",slist([
+    "First mound work since surgery — communicate everything about how it felt",
+    "75% is controlled intent with purpose — it is not easy, it is disciplined",
+    "Any sharp sensation in elbow or shoulder — stop immediately",
+    "Expect the arm to feel this session. Communicate soreness location."
+  ]))}
+`},
+
+throw_lt_90_fb:{tag:"Throwing",title:"Long Toss + Mound — 90% Controlled",arm:false,body:`
+  ${pill("Building mound intent — 90% controlled. Stay in command.")}
+  ${sec("Session",
+    ex("Long Toss","Light",["Arm up easy","Go to comfortable distance"])
+    +ex("Mound","40 pitches · 90%",["90% is controlled competition — not max effort","Stay in mechanics — speed comes from pattern","Every pitch should be commandable"])
+    +ex("Pitch Types","FB · CH · Easy Breaking",["Fastball command first","Feel the changeup","Easy breaking — don't force the shape yet"])
+  )}
+  ${sec("Notes",slist([
+    "90% will feel closer to game speed — trust the process",
+    "Elbow and shoulder wellness check after every session at this intensity",
+    "Communicate soreness location and severity — be specific"
+  ]))}
+`},
+
+throw_lt_90_all:{tag:"Throwing",title:"Long Toss + Mound — 90% All Pitches",arm:false,body:`
+  ${pill("90% intent — full arsenal. Command everything.")}
+  ${sec("Session",
+    ex("Long Toss","Light",["Easy warm-up to comfortable distance"])
+    +ex("Mound","40 pitches · 90%",["Full intent within control","Compete with the movement — not just velo"])
+    +ex("Pitch Types","All pitches",["Full arsenal — trust what you've built","Command every pitch type","If a pitch causes discomfort — communicate and remove it"])
+  )}
+  ${sec("Notes",slist([
+    "Full pitch mix back in rotation — significant progress",
+    "90% should feel natural now — the arm has been building to this",
+    "Daily wellness check: arm soreness should be muscle soreness, not joint soreness"
+  ]))}
+`},
+
+throw_lt_100_all:{tag:"Throwing",title:"Long Toss + Mound — 100% Full Intent",arm:false,body:`
+  ${pill("Full intent. Compete. This is game speed — own it.")}
+  ${sec("Session",
+    ex("Long Toss","Light",["Arm up easy"])
+    +ex("Mound","40 pitches · 100%",["Game speed — compete with every pitch","Full intent on every rep — don't coast","The arm is ready for this"])
+    +ex("Pitch Types","All pitches",["Attack the zone — trust every pitch","Full velo on the fastball","Compete with every pitch type"])
+  )}
+  ${sec("Notes",slist([
+    "100% effort — the most demanding session since surgery",
+    "Communicate everything — soreness location, timing, intensity",
+    "Joint soreness is not normal. Muscle soreness after 100% is expected.",
+    "Recovery after these sessions is critical — do not skip post throw"
+  ]))}
+`},
+
+throw_pen_15:{tag:"Throwing",title:"Pen Day — 15 Pitches + Live BP",arm:false,body:`
+  ${pill("Live work begins. 15 pen pitches + Live BP. Full pitcher mode.")}
+  ${sec("Session",
+    ex("Long Toss","Light warm-up",["Arm up before getting on the mound"])
+    +ex("Pen","15 pitches",["Command focus — feel your delivery","Mix your pitches — pre-BP warm-up"])
+    +ex("Live BP","All pitches",["Real hitter in the box — compete","Trust your stuff — pitch to contact","Command is king right now"])
+    +ex("Pitch Types","ALL",["Full arsenal — attack the zone"])
+  )}
+  ${sec("Notes",slist([
+    "Live BP is the closest thing to a game — your brain is fully engaged",
+    "Communicate how the arm feels during and after",
+    "15 weeks of work got you here — trust it"
+  ]))}
+`},
+
+throw_pen_20:{tag:"Throwing",title:"Full Pen — 20 Pitches + 2×15 BP + Live BP",arm:false,body:`
+  ${pill("Full game simulation. 20 pen + 2 rounds of BP + live. This is the finish line.")}
+  ${sec("Session",
+    ex("Long Toss","Light warm-up",["Build to comfortable distance before touching the mound"])
+    +ex("Pen","20 pitches",["Command every pitch — feel your delivery","Mix everything"])
+    +ex("Bullpen","2 rounds × 15 pitches",["Round 1: command and feel","Round 2: compete — attack the zone","Rest between rounds"])
+    +ex("Live BP","All pitches",["Full game intent — compete with real hitters","Command + velo — don't sacrifice one for the other"])
+  )}
+  ${sec("Notes",slist([
+    "This is the milestone you've been building toward since surgery",
+    "Your return is earned — compete with everything you have",
+    "Communicate everything about how the arm felt",
+    "This is not the end — this is the beginning of your next chapter"
+  ]))}
+`},
+
+p1_mon:{tag:"Phase 1 · Lower A",title:"Monday — Lower A",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Hold quality over load — position and tension are the stimulus")}
+  ${sec("Primer",
+    ex("Medball Hip Toss","2x4",["Hip extension into the toss — load the glute, not the back","Full hip drive — arm follows","Quality over speed"])
+    +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["Full ankle, knee, hip extension","Squeeze push-leg glute at top — hold","Primes the hip extension pattern"])
+    +ex("Kneeling Sprint","2x3",["Explosive drive from kneeling — fire the hips","Max acceleration out of the start"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Iso Rack Pull","3x15s",["Push into bar at max intent — bar stays fixed","Full body tension — brace everything","Split stance loaded — pelvis tucked"])
+    +ex("Split Squat","3x8e · 2s down · 10s pause at bottom",["2s down · 10s hold at bottom — own the position","Front knee tracks over 2nd toe","Drive up with intent from the hold","★ College option: Front Racked RFESS — isometric hold 5s → into 5 reps"])
+    +ex("SL Isometric Glute Bridge","3x15s",["Drive through heel — squeeze glute hard at top","Pelvis level — do not let free hip drop","Hold the full 15s"])
+  )}
+  ${sec("Supplemental",
+    ex("Palof Press Hold","3x6e · 3s hold",["3s hold — real anti-rotation stimulus","Brace the core — ribcage down, pelvis tucked"])
+    +ex("Copenhagen Plank","3x10s",["Full straight line — do not sag at the hip","Squeeze inner thigh into the bench"])
+    +ex("ASLR Hold","3x6e · 2s pause",["Pause at bottom — feel the hamstring and hip flexor","Low back stays down always"])
+  )}
+`},
+
+p1_tue:{tag:"Phase 1 · Upper A",title:"Tuesday — Upper A",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing · Arm Care B after the session")}
+  ${sec("Primer",
+    ex("Medball Chest Pass","2x4",["Full intent — lower half connects","Arm follows the body"])
+    +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top","Stack the hips — no sagging"])
+  )}
+  ${sec("Primary",
+    ex("BB Overcoming Bench Press Iso","3x10s",["Push against bar at max intent — bar stays fixed","Smooth sustained effort — no jerking","Brace everything"])
+    +ex("DB Bench Press","3x8 · 2s pause at bottom",["2s pause at bottom — feel the chest stretch","Do not bounce — pause hard","Drive up with intent"])
+    +ex("Split Stance SA Rotational Row","3x8e · 2s return",["Split stance loaded — pelvis tucked","Pull to ribcage — squeeze scap 1s","2s controlled return"])
+  )}
+  ${sec("Supplemental",
+    ex("PVC Pipe Palof Overcoming Iso","3x5s",["Push max into the pipe — full body tension","Ribcage down, pelvis tucked — hold 5s"])
+    +ex("Split Stance Medball Chop","3x5e",["Hip loads into the chop — not just the arms","Control the deceleration"])
+  )}
+  ${sec("College Options — Add at End",
+    ex("Bicep of Choice","2x10",["Full range — control the descent","Any curl variation"])
+    +ex("Tricep of Choice","2x10",["Full lockout each rep — control the descent","Any extension variation"])
+  )}
+`},
+
+p1_thu:{tag:"Phase 1 · Lower B",title:"Thursday — Lower B",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Frontal plane emphasis — lateral load and hip stability")}
+  ${sec("Primer",
+    ex("SL Medball Slam","2x3e",["Single leg — load the hip, slam with intention","Stick the landing — control before going again"])
+    +ex("Banded Marches","2x10",["Tuck pelvis — ribcage down","Drive the knee up — don't let the band rotate you"])
+    +ex("Flying 10","2x3",["Build to full speed then hit the 10-yard zone at max velocity","High knee drive through acceleration"])
+  )}
+  ${sec("Primary",
+    ex("DB Romanian Deadlift","3x8 · 2s down · 3s hold at bottom",["2s down · 3s hold at bottom — feel the hamstring stretch","Hip hinge — neutral spine throughout","Reset each rep — no bounce"])
+    +ex("Broad Jump / Triple Jump","3x1",["Max distance — load the hip and drive","Stick the landing — absorb and control","Three consecutive jumps then reset"])
+    +ex("Dead Bug","3x5",["Low back glued to floor — no arch","Exhale as arm and leg lower — slow","If the back lifts, shorten the range"])
+  )}
+  ${sec("Supplemental",
+    ex("Landmine Lateral Lunge","3x6e · 4s pause",["Step wide — 4s pause at bottom — feel the inner thigh","Drive back through the lateral hip"])
+    +ex("Lateral Bound","2x4e",["Load the hip — drive laterally with intent","Stick the landing — control before going again"])
+    +ex("Lateral Triple Extension Wall Iso","3x2 · 10s hold",["Push laterally into wall — full extension","Tall spine — 10s hold"])
+  )}
+`},
+
+p1_fri:{tag:"Phase 1 · Upper C",title:"Friday — Upper C",arm:false,body:`
+  ${pill("PHASE 1 — ISOMETRIC FOUNDATION")}
+  ${pill("Lift before throwing · Arm Care B after the session")}
+  ${sec("Primer",
+    ex("MB Overhead Toss","2x3",["Full hip extension — arms follow — fluid motion","Max intent — prime the overhead chain"])
+    +ex("Broad Jump","2x3",["Load the hips — drive horizontally","Stick the landing — control before going again"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Landmine Press","3x8e · 2s down",["2s controlled descent","Split stance loaded, pelvis tucked","Drive up with intent"])
+    +ex("Single Arm Lat Pulldown","3x5e · 10s pause into reps",["10s pause at full extension into reps — own the end range","Feel the lat and scap at full stretch"])
+  )}
+  ${sec("Supplemental",
+    ex("Cable Split Stance Rotational Press","3x8e",["Hip loads into the press — not just the arm","Full rotation through the hip","Control the return"])
+    +ex("Cable High to Low Rotation","3x6e",["Rotate from high to low — hip drives","Slow return — the decel is the training"])
+  )}
+  ${sec("College Options — Add at End",
+    ex("Bicep of Choice","2x10",["Full range — control the descent"])
+    +ex("Tricep of Choice","2x10",["Full lockout each rep"])
+  )}
+`},
+
+p2_mon:{tag:"Phase 2 · Lower A",title:"Monday — Lower A",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Tempo is the stimulus — the descent is where the work happens","warn")}
+  ${sec("Primer",
+    ex("Medball Hip Toss","2x4",["More intent than Phase 1 — full hip drive","Compete with each rep"])
+    +ex("Sprinter Triple Extension Iso","2x3 · 5s hold",["The isometric foundation now supports the eccentric work","Hold it tight"])
+    +ex("Kneeling Sprint","2x3",["Max acceleration from kneeling — attack it"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Iso Rack Pull","3x8s",["Max intent — bar fixed — primes posterior chain","Shorter hold, same intensity"])
+    +ex("Split Squat","3x8e · 5s down · explode up",["5s controlled descent — feel the front leg loading under time","Explode up — contrast makes the stimulus","★ College option: Front Racked RFESS · 5s eccentric · explode into 5 reps"])
+    +ex("SL Glute Bridge","4x4 · 2s top · 8s lower · 2+ min rest",["2s hold at top — squeeze hard","8s controlled lower — this IS the training stimulus","2+ min rest between sets — the 8s demands it"])
+  )}
+  ${sec("Supplemental",
+    ex("Palof Low-to-High","3x8e · slow return",["Slow controlled return — eccentric core work","Drive from low to high diagonally"])
+    +ex("Copenhagen Plank","3x15s",["15s hold — build from Phase 1","Hips square — breathe through it"])
+    +ex("ASLR Hold","3x8e · 2s pause",["2s real pause — low back stays down","More reps than Phase 1"])
+  )}
+`},
+
+p2_tue:{tag:"Phase 2 · Upper A",title:"Tuesday — Upper A",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("The slow descent is the work · Arm Care B after the session","warn")}
+  ${sec("Primer",
+    ex("Medball Chest Pass","2x4",["Full intent — lower half connects"])
+    +ex("Push-Up Rotate","2x3",["Controlled push-up — rotate to full T at top"])
+  )}
+  ${sec("Primary",
+    ex("BB Overcoming Bench Press Iso","3x10s",["Max intent push — stays isometric throughout","Full body tension — compete with the bar"])
+    +ex("DB Bench Press","3x6 · 5s down · explode up",["5s controlled descent — this is the work","1s pause at bottom before exploding"])
+    +ex("Split Stance SA Rotational Row","3x8e · 4s return",["4s controlled return — the eccentric work","Scap control on the way back — this protects the arm"])
+  )}
+  ${sec("Supplemental",
+    ex("PVC Pipe Palof Overcoming Iso","3x5s",["Max push — full body tension"])
+    +ex("Split Stance Medball Chop","3x5e · 3s return",["3s controlled return — eccentric core work"])
+  )}
+  ${sec("College Options — Add at End",
+    ex("Bicep of Choice","2x10",["Full range — control the descent"])
+    +ex("Tricep of Choice","2x10",["Full lockout each rep"])
+  )}
+`},
+
+p2_thu:{tag:"Phase 2 · Lower B",title:"Thursday — Lower B",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Frontal plane emphasis — slow eccentrics, stick every landing","warn")}
+  ${sec("Primer",
+    ex("SL Medball Slam","2x3e",["Load the hip — slam with intention — stick the landing"])
+    +ex("Banded Marches","2x10",["Tuck pelvis — drive the knee up"])
+    +ex("Flying 10","2x3",["Build to max velocity through the 10-yard zone"])
+  )}
+  ${sec("Primary",
+    ex("Lateral Triple Extension Wall Iso","3x2 · 10s hold",["Moved to primary this phase","Max intent — 10s hold — lateral hip loading"])
+    +ex("Landmine Lateral Lunge","3x6e · 5s down",["5s controlled descent — feel the inner thigh loading","Drive back through the lateral hip"])
+    +ex("Lateral Bound","3x4e · stick landing",["Higher intent than Phase 1","Stick the landing and control before going again"])
+  )}
+  ${sec("Supplemental",
+    ex("Nordic Lower","2-3x4 · 4-5s descent",["4-5s controlled descent — resist gravity the whole way","Catch at the bottom — do not collapse","Start with 2 sets, progress to 3 when all 4 reps are controlled"])
+    +ex("Box Jumps","3x3",["Loaded hip drive — max intent","Land soft — absorb with hip and knee","Reset fully before each rep"])
+  )}
+`},
+
+p2_fri:{tag:"Phase 2 · Upper C",title:"Friday — Upper C",arm:false,body:`
+  ${pill("PHASE 2 — ECCENTRIC / VOLUME")}
+  ${pill("Control every descent · Arm Care B after the session","warn")}
+  ${sec("Primer",
+    ex("MB Overhead Toss","2x3",["Full hip extension — more explosive intent","Stay balanced through the release"])
+    +ex("Broad Jump","3x3",["More sets this phase — power volume","Max intent every rep — stick each landing"])
+  )}
+  ${sec("Primary",
+    ex("Split Stance Landmine Press","3x8e · 4s down · explode up",["4s controlled descent — position always first","Explode up — contrast the slow descent","Pelvis tucked throughout"])
+    +ex("Single Arm Lat Pulldown","3x6e · 5s return to extension",["5s controlled return to full extension — the eccentric work","Do not let it snap back"])
+  )}
+  ${sec("Supplemental",
+    ex("Cable Split Stance Rotational Press","3x8e · 3s return",["3s controlled return — eccentric rotational work","Rotation through the hip, not just the shoulder"])
+    +ex("Cable High to Low Rotation","3x6e",["Rotate from high to low — hip drives","Control the return — feel the oblique working"])
+  )}
+  ${sec("College Options — Add at End",
+    ex("Bicep of Choice","2x10",["Full range — control the descent"])
+    +ex("Tricep of Choice","2x10",["Full lockout each rep"])
+  )}
+`}
+
+};
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+const P=`<td class="dc prep-cell clickable" onclick="openModal('prep')">Tap to view</td>`;
+const O=`<td class="dc off-cell">—</td>`;
+function T(k,t,bg){return `<td class="dc clickable" onclick="openModal('${k}')" style="background:${bg||'#111'}">${t}</td>`;}
+function L(k,t){return `<td class="dc clickable" onclick="openModal('${k}')" style="background:#131313">${t}</td>`;}
+function A(k,t){return `<td class="dc arm-cell arm-clickable" onclick="openModal('${k}')">${t}</td>`;}
+function W(num,label,note,hdrs,throw_row,lift_row,pt_row,ac_row){
+  const hn=note?`<span class="week-note">${note}</span>`:'';
+  const hr=hdrs.map(([d,c])=>`<th class="day-header ${c}">${d}</th>`).join('');
+  const rows=[
+    ['PREP',hdrs.map(([d,c])=>c==='day-off'?O:P).join('')],
+    ['THROW',throw_row],
+    ['LIFT',lift_row],
+    ['POST THROW',pt_row],
+    ['ARM CARE',ac_row]
+  ];
+  return `<div class="week-block"><div class="week-header"><span class="week-num">WEEK ${num}</span><span class="week-label">${label}</span>${hn}</div><table class="week-table"><thead><tr><td class="row-label"></td>${hr}</tr></thead><tbody>${rows.map(([rl,cells])=>`<tr><td class="row-label">${rl}</td>${cells}</tr>`).join('')}</tbody></table></div>`;
+}
+
+// Phase 1 weeks 1-8
+const p1w1=W(1,'RETURN TO THROW — 25–45ft','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_45','Toss · 25–45ft · arm tolerance')+O+T('throw_toss_45','Toss · 25–45ft · arm tolerance','#131313')+O+T('throw_toss_45','Toss · 25–45ft · arm tolerance'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w2=W(2,'BUILDING DISTANCE — 25–60ft','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_60','Toss · 25–60ft · building')+O+T('throw_toss_60','Toss · 25–60ft · building','#131313')+O+T('throw_toss_60','Toss · 25–60ft · building'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w3=W(3,'BUILDING DISTANCE — 25–75ft','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_75','Toss · 25–75ft · building')+O+T('throw_toss_75','Toss · 25–75ft · building','#131313')+O+T('throw_toss_75','Toss · 25–75ft · building'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w4=W(4,'HOLDING DISTANCE — 75ft FOCUS','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_75','Toss · 25–75ft · consolidate')+O+T('throw_toss_75','Toss · 25–75ft · consolidate','#131313')+O+T('throw_toss_75','Toss · 25–75ft · consolidate'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w5=W(5,'APPROACHING 90ft — ADDING THROW DAYS','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_90','Toss · 25–90ft')+T('throw_easy_catch','Easy catch','#131313')+T('throw_toss_90','Toss · 25–90ft')+T('throw_easy_catch','Easy catch','#131313')+T('throw_toss_90','Toss · 25–90ft'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w6=W(6,'FULL DISTANCE — 90ft ESTABLISHED','',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_toss_90','Toss · 25–90ft · full distance')+T('throw_easy_catch','Easy catch','#131313')+T('throw_toss_90','Toss · 25–90ft · full distance')+T('throw_easy_catch','Easy catch','#131313')+T('throw_toss_90','Toss · 25–90ft · full distance'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w7=W(7,'DELOAD — HONOR IT','Deload Week',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_deload','Deload · distance protocol')+O+T('throw_deload','Deload · distance protocol','#131313')+O+T('throw_deload','Deload · distance protocol'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p1w8=W(8,'LONG TOSS + MOUND BEGINS — 75%','',
+  [['MON','day-med'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-med']],
+  T('throw_lt_75','Long toss · 35 pitches · 75% FB/CH/Easy')+O+T('throw_lt_light','Long toss · light recovery','#131313')+O+T('throw_lt_75','Long toss · 40 pitches · 75% FB/CH/Easy'),
+  L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+
+const P1_HTML=p1w1+p1w2+p1w3+p1w4+p1w5+p1w6+p1w7+p1w8;
+
+// Phase 2 weeks 9-16
+const p2w9=W(9,'MOUND: 40 PITCHES · 90% · FB/CH/EASY','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-high']],
+  T('throw_lt_90_fb','Long toss · 40 pitches · 90% FB/CH/Easy')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_light','Long toss · light recovery')+T('throw_lt_light','Long toss · light recovery','#131313')+T('throw_lt_90_fb','Long toss · 40 pitches · 90% FB/CH/Easy'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w10=W(10,'MOUND: 40 PITCHES · 90% · ALL PITCHES','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_lt_90_all','Long toss · 40 pitches · 90% ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_easy_catch','Easy catch')+T('throw_lt_light','Long toss · light recovery','#131313')+T('throw_easy_catch','Easy catch'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w11=W(11,'MOUND: 90% ALL PITCHES — BUILDING','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-high']],
+  T('throw_lt_90_all','Long toss · 40 pitches · 90% ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_light','Long toss · light recovery')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_90_all','Long toss · 40 pitches · 90% ALL'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w12=W(12,'MOUND: 100% — COMPETE','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-high']],
+  T('throw_lt_100_all','Long toss · 40 pitches · 100% ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_light','Long toss · light recovery')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_100_all','Long toss · 40 pitches · 100% ALL'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w13=W(13,'MOUND: 100% — FULL COMPETE BLOCK','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_lt_100_all','Long toss · 40 pitches · 100% ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_light','Long toss · light recovery')+T('throw_lt_light','Long toss · light recovery','#131313')+T('throw_easy_catch','Easy catch'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w14=W(14,'DELOAD — PREPARE FOR LIVE WORK','Deload Week',
+  [['MON','day-low'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_deload','Deload · distance protocol')+O+T('throw_deload','Deload · light distance','#131313')+O+T('throw_deload','Deload · distance protocol'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+O+A('pt_a','Post Throw A')+O+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w15=W(15,'PEN DAY — 15 PITCHES + LIVE BP','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-med']],
+  T('throw_pen_15','15 pen pitches + Live BP · ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_light','Long toss · light recovery')+T('throw_easy_catch','Easy catch','#131313')+T('throw_lt_75','Long toss · flat ground · 75% ALL'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+const p2w16=W(16,'FULL PEN — 20 PITCHES + 2×15 BP + LIVE BP','',
+  [['MON','day-high'],['TUE','day-low'],['WED','day-low'],['THU','day-low'],['FRI','day-low']],
+  T('throw_pen_20','20 pen + 2×15 BP + Live BP · ALL')+T('throw_easy_catch','Easy catch','#131313')+T('throw_easy_catch','Easy catch')+T('throw_lt_light','Long toss · light recovery','#131313')+T('throw_lt_light','Long toss · light recovery'),
+  L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
+  A('pt_a','Post Throw A')+A('pt_b','Post Throw B')+A('pt_b','Post Throw B')+A('pt_a','Post Throw A')+A('pt_b','Post Throw B'),
+  A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')+O+A('armcare_a','Arm Care A')+A('armcare_b','Arm Care B')
+);
+
+const P2_HTML=p2w9+p2w10+p2w11+p2w12+p2w13+p2w14+p2w15+p2w16;
+
+document.getElementById('wc_p1').innerHTML=P1_HTML;
+document.getElementById('wc_p2').innerHTML=P2_HTML;
+
+function openModal(key){
+  const d=C[key]; if(!d) return;
+  const m=document.getElementById('modal');
+  m.className='modal'+(d.arm?' arm-modal':'');
+  document.getElementById('modal-tag').textContent=d.tag;
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-body').innerHTML=d.body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOv(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function showPhase(id,btn){
+  document.querySelectorAll('.phase-block').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
