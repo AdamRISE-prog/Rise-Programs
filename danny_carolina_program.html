@@ -377,43 +377,76 @@ dynamic:{tag:"Warm Up",title:"Dynamic Warm Up",arm:false,body:`
   )}
 `},
 
-plyo_light:{tag:"Plyo",title:"Light Intensity Plyo Day",arm:false,body:`
-  ${pill("Light day — backspin the ball. Quality over speed. Everything adjustable to how you feel.")}
-  ${sec("Weighted Balls — Light Day",
-    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Backspin — loose arm — easy intent","Feel the shoulder move freely, no effort"])
+plyo_light:{tag:"Plyo Program",title:"Light Intensity Day",arm:false,body:`
+  ${pill("Light — mechanics and feel. Not about output. Adjustable to how you feel.")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Backspin — loose arm — easy intent","Feel the shoulder move freely — no effort"])
     +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Quick hip pivot — transfer the intent","Easy and controlled — feel the hip firing"])
     +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Roll into the throw — feel the momentum transfer","Easy intent — this is warm-up work"])
   )}
-  ${sec("Session Intent",slist([
+  ${sec("Catch Play",
+    ex("Light to Medium Catch","To scheduled distance",["Feel the arm open up — don't force it","Jeter throws, front hand, back hand — mix in throughout","Distance is a target, not a requirement"])
+  )}
+  ${sec("Session Notes",slist([
     "Light day = quality of movement, not quantity of effort",
     "Every rep should feel smooth — if it doesn't, back off",
-    "This is the foundation that makes the high days possible",
     "Adjust volume if the arm is feeling it — communicate"
   ]))}
 `},
 
-plyo_mod:{tag:"Plyo",title:"Moderate Intensity Plyo Day",arm:false,body:`
-  ${pill("Moderate day — medium intent. Build the pattern.")}
-  ${sec("Weighted Balls — Moderate Day",
+plyo_light_feel:{tag:"Plyo Program",title:"Light Intensity Day",arm:false,body:`
+  ${pill("Light — mechanics and feel. Catch to wherever the arm feels good.")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Backspin — loose arm — easy intent","Feel the shoulder move freely"])
+    +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Easy hip pivot — feel the hip firing"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Easy roll in — feel the momentum transfer"])
+  )}
+  ${sec("Catch Play",
+    ex("Catch to Feel","Light — no distance target",["Go to a distance that feels comfortable and loose","Shortstop mindset — athletic throws mixed in","If Tuesday was a high day — this is recovery. Respect it."])
+  )}
+  ${sec("Session Notes",slist([
+    "This session's only requirement is that the arm feels good throughout",
+    "Not a training day — a maintenance day",
+    "Communicate if the arm feels different than usual"
+  ]))}
+`},
+
+plyo_light_catch:{tag:"Plyo Program",title:"Light Day — Easy Catch",arm:false,body:`
+  ${pill("Light plyo, easy catch. Keep the arm moving — don't tax it.")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Easy intent — backspin and loose arm"])
+    +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Easy pivot — move the hip"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Easy roll in — feel the pattern"])
+  )}
+  ${sec("Catch Play",
+    ex("Easy Catch","Short — light distances",["Short distances, comfortable pace throughout","Arm should feel loose the whole time","Stop immediately if anything feels off"])
+  )}
+  ${sec("Session Notes",slist([
+    "Not a training day — a maintenance day",
+    "Keep the arm loose for the high-intent sessions ahead",
+    "If the arm is sore, shorten or skip with communication"
+  ]))}
+`},
+
+plyo_mod:{tag:"Plyo Program",title:"Moderate Intensity Day",arm:false,body:`
+  ${pill("Moderate — build output, maintain mechanics.")}
+  ${sec("Weighted Ball Work",
     ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Medium intent — more purpose than light day","Backspin and feel"])
     +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Hip pivot into the throw — medium intent","Stay athletic"])
     +ex("Split Stance","Set 1: 3 reps / Set 2: 3 reps",["Load the split — transfer into the throw","Feel the hip driving the arm"])
-    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Medium intent roll in","Own the momentum transfer"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Medium intent roll in — own the momentum transfer"])
     +ex("Step Backs — P","Set 1: 3 reps / Set 2: 3 reps",["Step back into a loaded position — fire","Stay balanced through the release"])
     +ex("Rotational Throws","Set 1: 3 reps / Set 2: 3 reps",["Rotate through the hips — full turn","Jeter mentality — compete with every rep"])
     +ex("Compression Throws","Set 1: 3 reps / Set 2: 3 reps",["Compress into the ground — release up","Feel the ground force transfer into the arm"])
   )}
-  ${sec("Session Intent",slist([
-    "Moderate = purposeful. Not maxing, not coasting.",
-    "Each exercise builds the athletic arm action",
-    "Rotational throws = shortstop training. Own every angle.",
-    "Adjust if anything feels off — lower intent, not less reps"
-  ]))}
+  ${sec("Catch Play",
+    ex("Medium Catch","To scheduled distance",["Smooth and purposeful — not maxing","Mix in front hand, back hand, rotation throws","Command the throw, don't just throw it"])
+  )}
 `},
 
-plyo_high:{tag:"Plyo",title:"High Intensity Plyo Day",arm:false,body:`
-  ${pill("High day — compete with every rep. This is where you build the arm.","warn")}
-  ${sec("Weighted Balls — High Day",
+plyo_high:{tag:"Plyo Program",title:"High Intensity Day",arm:false,body:`
+  ${pill("High output — compete with every rep. This is where you build the arm.","warn")}
+  ${sec("Weighted Ball Work",
     ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["High intent — max backspin","Arm is fully warm — compete"])
     +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Explosive hip pivot — full transfer","Attack every rep"])
     +ex("Split Stance","Set 1: 3 reps / Set 2: 3 reps",["Load and fire — full intent","Feel the hip leading the arm"])
@@ -422,116 +455,69 @@ plyo_high:{tag:"Plyo",title:"High Intensity Plyo Day",arm:false,body:`
     +ex("Rotational Throws","Set 1: 3 reps / Set 2: 3 reps",["Full rotation — max intent","Jeter throws — front hand, back hand, all of it"])
     +ex("Compression Throws","Set 1: 3 reps / Set 2: 3 reps",["Max ground force — compete","Feel the whole body working"])
   )}
-  ${sec("Session Intent",slist([
-    "High day = compete with every single rep",
-    "This is the session where you develop arm strength and arm speed",
-    "If the arm feels heavy or sore — drop to moderate intent, not zero",
-    "Shortstop mentality: every angle, every arm action, own it"
-  ]))}
-`},
-
-throw_light:{tag:"Throwing",title:"Light Plyo + Medium Catch",arm:false,body:`
-  ${pill("Light plyo warm-up — light to medium catch. Distance noted in schedule.")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","Light intensity",["See plyo card for exercises","Backspin, quality, easy intent"])
-    +ex("Catch Play","Light to medium — to scheduled distance",["Feel the arm open up — don't force it","Smooth delivery — let the arm carry the throw","Back off if it doesn't feel right"])
-    +ex("Jeter / Athletic Throws","Mix in throughout",["Jeter throws, front hand, back hand — stay athletic","Not just straight-line catch — throw from angles"])
+  ${sec("Catch Play",
+    ex("Max Catch","To scheduled distance",["Chase distance with good arm action — no arm-only throws","Shortstop footwork — front hand, back hand, pivot throws at distance","Compete with every angle"])
   )}
-  ${sec("Notes",slist([
-    "Light day exists to keep the arm moving without taxing it",
-    "The distance is a target, not a requirement — go to where it feels good",
-    "Communicate if the arm feels heavy or stiff before this session"
-  ]))}
-`},
-
-throw_mod:{tag:"Throwing",title:"Moderate Plyo + Medium Catch",arm:false,body:`
-  ${pill("Moderate plyo — medium catch to scheduled distance.")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","Moderate intensity",["See plyo card — full moderate sequence","Build intent through the sequence"])
-    +ex("Catch Play","Medium intent — to scheduled distance",["Smooth and purposeful — not maxing","Command the throw, don't just throw it","Mix in athletic actions — front hand, back hand, rotation throws"])
-  )}
-  ${sec("Notes",slist([
-    "Moderate = purposeful movement. You're building the pattern.",
-    "Distance is a target — chase comfort, not the number",
-    "If Wednesday feels heavy after Monday's throw, back off to light"
-  ]))}
-`},
-
-throw_high:{tag:"Throwing",title:"High Plyo + Max Catch",arm:false,body:`
-  ${pill("High intensity — compete with every throw. Distance noted in schedule.","warn")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","High intensity",["Full high day plyo sequence — compete","Arm should feel loose and warm before catch play"])
-    +ex("Catch Play","High intent — max distance",["Chase distance with good arm action","Full intent but do not force it — if it goes, it goes","Mix Jeter throws, rotation throws at max distance too"])
-    +ex("Athletic Throws","Throughout",["Shortstop footwork — front hand, back hand, pivot throws","Compete with every angle"])
-  )}
-  ${sec("Notes",slist([
+  ${sec("Session Notes",slist([
     "High day = develop. You are building arm strength right now.",
     "Max distance is a guide — only go there if the arm feels ready",
-    "Throwing like a shortstop means owning every arm action, not just distance",
-    "If Tuesday was high and Thursday is light — honor that split"
+    "Throwing like a shortstop means owning every arm action, not just distance"
   ]))}
 `},
 
-throw_light_feel:{tag:"Throwing",title:"Light Plyo + Catch to Feel",arm:false,body:`
-  ${pill("Light day — throw to wherever feels good. No distance target.")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","Light",["Light plyo sequence — easy intent","Warm the arm up well before catch"])
-    +ex("Catch Play","Light — to feel",["Go to a distance that feels comfortable and loose","No pushing — this is a maintenance and recovery session","Athletic throws mixed in — stay in the shortstop mindset"])
+plyo_high_3pd:{tag:"Plyo Program",title:"High Intensity + 3 Pulldowns",arm:false,body:`
+  ${pill("High output + pulldowns begin — max intent. Communicate arm response.","warn")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Max intent — arm set and warm"])
+    +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Explosive hip pivot — full transfer"])
+    +ex("Split Stance","Set 1: 3 reps / Set 2: 3 reps",["Load and fire — full intent"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["High intent roll in — attack the target"])
+    +ex("Step Backs — P","Set 1: 3 reps / Set 2: 3 reps",["Full load and fire — compete"])
+    +ex("Rotational Throws","Set 1: 3 reps / Set 2: 3 reps",["Full rotation — max intent","Jeter throws — every angle"])
+    +ex("Compression Throws","Set 1: 3 reps / Set 2: 3 reps",["Max ground force — compete"])
   )}
-  ${sec("Notes",slist([
-    "This session's only requirement is that the arm feels good throughout",
-    "If Tuesday was a high day — this is recovery. Respect it.",
-    "Communicate if the arm feels different than usual on light days"
-  ]))}
-`},
-
-throw_light_catch:{tag:"Throwing",title:"Easy Catch — Light Maintenance",arm:false,body:`
-  ${pill("Easy catch — arm maintenance. Keep it moving, don't tax it.")}
-  ${sec("Session",
-    ex("Easy Catch Play","Light distances — to feel",["Short distances, conversational pace","Arm should feel comfortable the whole time","Back off immediately if anything feels off"])
-  )}
-  ${sec("Notes",slist([
-    "These days keep the arm loose for the high-intent sessions",
-    "Not a training day — a maintenance day",
-    "If the arm is sore from Tuesday, shorten or skip with communication"
-  ]))}
-`},
-
-throw_high_3pd:{tag:"Throwing",title:"High + 3 Pulldowns",arm:false,body:`
-  ${pill("Pulldown phase begins — high plyo + 3 pulldowns. Communicate arm response.","warn")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","High intensity",["Full high plyo sequence","Arm needs to be completely warm before pulldowns"])
-    +ex("Long Toss","High · to 200ft+",["Build to max comfortable distance","Full intent — shortstop arm actions throughout"])
-    +ex("Pulldowns","3 reps",["Pull through from extended distance — max intent","This is velocity training. Compete.","Track how the arm feels — fatigue is expected, pain is not"])
+  ${sec("Long Toss + Pulldowns",
+    ex("Long Toss","High · to 200ft+",["Build to max comfortable distance — full intent","Shortstop arm actions throughout"])
+    +ex("Pulldowns","3 reps — max intent",["Pull through from extended distance — max intent","Velocity training. Compete.","Rest between reps — quality over quantity"])
   )}
   ${sec("Pulldown Notes",slist([
-    "Pulldowns are max-intent reps — not every rep, just these 3",
-    "Arm should feel warm and loose before attempting pulldowns",
-    "Communicate shoulder or elbow response after pulldown days specifically",
-    "If pulldowns cause discomfort — flag immediately and adjust"
+    "Arm needs to be fully warm before pulldowns",
+    "Expected: muscle fatigue. Not expected: joint pain or sharpness.",
+    "Communicate arm response after this session specifically"
   ]))}
 `},
 
-throw_high_5pd:{tag:"Throwing",title:"High + 5 Pulldowns",arm:false,body:`
-  ${pill("Pulldown phase building — high plyo + 5 pulldowns.","warn")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","High intensity",["Full high plyo — arm fully warm before pulldowns"])
-    +ex("Long Toss","High · 200ft+",["Build to max comfortable distance","Full intent — athletic arm actions"])
-    +ex("Pulldowns","5 reps",["5 max-intent pulldown reps","Track arm response carefully — 5 is significant volume","Rest fully between each pulldown rep"])
+plyo_high_5pd:{tag:"Plyo Program",title:"High Intensity + 5 Pulldowns",arm:false,body:`
+  ${pill("High output + 5 pulldowns — velocity accumulation. Communicate arm response.","warn")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Max intent — arm set and hot"])
+    +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Explosive pivot — full transfer"])
+    +ex("Split Stance","Set 1: 3 reps / Set 2: 3 reps",["Load and fire — full intent"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["High intent — attack the target"])
+    +ex("Step Backs — P","Set 1: 3 reps / Set 2: 3 reps",["Full load and fire — compete"])
+    +ex("Rotational Throws","Set 1: 3 reps / Set 2: 3 reps",["Max rotation — Jeter mentality"])
+    +ex("Compression Throws","Set 1: 3 reps / Set 2: 3 reps",["Max ground force — compete"])
+  )}
+  ${sec("Long Toss + Pulldowns",
+    ex("Long Toss","High · to 200ft+",["Build to max comfortable distance — full intent"])
+    +ex("Pulldowns","5 reps — max intent",["5 max-intent reps","Rest fully between each pulldown","Communicate arm response after"])
   )}
   ${sec("Pulldown Notes",slist([
     "5 pulldowns is real velocity work — the arm will feel this",
-    "Expected: muscle fatigue. Not expected: joint pain or sharp sensation.",
-    "Communicate specifically how the arm felt after this session",
+    "Expected: muscle fatigue. Not expected: joint pain or sharpness.",
     "Volume can be adjusted down if arm response warrants it"
   ]))}
 `},
 
-throw_deload:{tag:"Throwing",title:"Deload — Move the Arm, Don't Tax It",arm:false,body:`
-  ${pill("Deload week — the arm adapts during recovery. Honor this week.")}
-  ${sec("Session",
-    ex("Plyo Warm-Up","Light or medium per schedule",["Easy plyo sequence — no max intent","Warm the arm up gently"])
-    +ex("Catch / Long Toss","Light distances — to feel good",["Short to medium distance — wherever it feels loose and comfortable","No chasing distance — this is maintenance only"])
+plyo_deload:{tag:"Plyo Program",title:"Deload — Light Day",arm:false,body:`
+  ${pill("Deload week — the arm adapts during recovery. Honor this.")}
+  ${sec("Weighted Ball Work",
+    ex("Reverse Throws","Set 1: 8 reps / Set 2: 8 reps",["Easy intent only — backspin and loose","No forcing — this is recovery"])
+    +ex("Pivot Pickoff — P","Set 1: 4 reps / Set 2: 4 reps",["Easy pivot — just move the hip"])
+    +ex("Roll Ins — O","Set 1: 4 reps / Set 2: 4 reps",["Easy roll in — feel the pattern, no output"])
+  )}
+  ${sec("Catch Play",
+    ex("Light Catch","Short — to feel good",["Short to medium distance — wherever it feels loose","No chasing distance — maintenance only"])
   )}
   ${sec("Deload Notes",slist([
     "This week is programmed — it is not optional",
@@ -747,25 +733,25 @@ function W(num,label,note,hdrs,throw_row,lift_row,pt_row){
 // Phase 1 — Weeks 1–4
 const p1w1=W(1,'ATHLETIC DEVELOPMENT · BUILD — TO 90ft','',
   [['MON','day-low'],['TUE','day-lift'],['WED','day-low'],['THU','day-lift'],['FRI','day-low']],
-  T('throw_light','Light plyo · catch to 90ft')+O+T('throw_light','Light plyo · catch to 90ft','#131313')+O+T('throw_light','Light plyo · catch to 90ft'),
+  T('plyo_light','Light plyo · catch to 90ft')+O+T('plyo_light','Light plyo · catch to 90ft','#131313')+O+T('plyo_light','Light plyo · catch to 90ft'),
   L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
   A('pt_a','Post A')+O+A('pt_b','Post B')+O+A('pt_c','Post C')
 );
 const p1w2=W(2,'BUILDING DISTANCE — TO 120ft','',
   [['MON','day-low'],['TUE','day-lift'],['WED','day-med'],['THU','day-lift'],['FRI','day-low']],
-  T('throw_light','Light plyo · catch to 90ft')+O+T('throw_mod','Mod plyo · catch to 120ft','#131313')+O+T('throw_light','Light plyo · catch to 120ft'),
+  T('plyo_light','Light plyo · catch to 90ft')+O+T('plyo_mod','Mod plyo · catch to 120ft','#131313')+O+T('plyo_light','Light plyo · catch to 120ft'),
   L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
   A('pt_a','Post A')+O+A('pt_b','Post B')+O+A('pt_c','Post C')
 );
 const p1w3=W(3,'SHORTSTOP RANGE — 150/180ft','',
   [['MON','day-med'],['TUE','day-lift'],['WED','day-med'],['THU','day-lift'],['FRI','day-high']],
-  T('throw_mod','Mod plyo · catch to 120ft')+O+T('throw_mod','Mod plyo · catch to 150ft','#131313')+O+T('throw_high','High plyo · catch to 180ft'),
+  T('plyo_mod','Mod plyo · catch to 120ft')+O+T('plyo_mod','Mod plyo · catch to 150ft','#131313')+O+T('plyo_high','High plyo · catch to 180ft'),
   L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
   A('pt_a','Post A')+O+A('pt_b','Post B')+O+A('pt_c','Post C')
 );
 const p1w4=W(4,'4-DAY THROW BEGINS — 180/200ft','',
   [['MON','day-low'],['TUE','day-high'],['WED','day-off'],['THU','day-low'],['FRI','day-high']],
-  T('throw_light_feel','Light plyo · to feel')+T('throw_high','High plyo · catch to 180+','#131313')+O+T('throw_light_feel','Light plyo · to feel')+T('throw_high','High plyo · catch to 200+'),
+  T('plyo_light_feel','Light plyo · to feel')+T('plyo_high','High plyo · catch to 180+','#131313')+O+T('plyo_light_feel','Light plyo · to feel')+T('plyo_high','High plyo · catch to 200+'),
   L('p1_mon','Lower A')+L('p1_tue','Upper A')+O+L('p1_thu','Lower B')+L('p1_fri','Upper C'),
   A('pt_a','Post A')+A('pt_b','Post B')+O+O+A('pt_c','Post C')
 );
@@ -775,25 +761,25 @@ const P1_HTML=p1w1+p1w2+p1w3+p1w4;
 // Phase 2 — Weeks 5–8
 const p2w5=W(5,'PUSHING DISTANCE — 200/220ft','',
   [['MON','day-low'],['TUE','day-high'],['WED','day-off'],['THU','day-low'],['FRI','day-high']],
-  T('throw_light_feel','Light plyo · to feel')+T('throw_high','High plyo · catch to 200+','#131313')+O+T('throw_light_feel','Light plyo · to feel')+T('throw_high','High plyo · catch to 220+'),
+  T('plyo_light_feel','Light plyo · to feel')+T('plyo_high','High plyo · catch to 200+','#131313')+O+T('plyo_light_feel','Light plyo · to feel')+T('plyo_high','High plyo · catch to 220+'),
   L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
   A('pt_a','Post A')+A('pt_b','Post B')+O+O+A('pt_c','Post C')
 );
 const p2w6=W(6,'PULLDOWN PHASE — 3 PULLDOWNS','Pulldowns Begin',
   [['MON','day-low'],['TUE','day-high'],['WED','day-off'],['THU','day-low'],['FRI','day-high']],
-  T('throw_light_feel','Light plyo · to feel')+T('throw_high_3pd','High plyo · 200+ · 3 pulldowns','#131313')+O+T('throw_light_catch','Light catch')+T('throw_high_3pd','High plyo · 200+ · 3 pulldowns'),
+  T('plyo_light_feel','Light plyo · to feel')+T('plyo_high_3pd','High plyo · 200+ · 3 pulldowns','#131313')+O+T('plyo_light_catch','Light catch')+T('plyo_high_3pd','High plyo · 200+ · 3 pulldowns'),
   L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
   A('pt_a','Post A')+A('pt_b','Post B')+O+O+A('pt_c','Post C')
 );
 const p2w7=W(7,'PULLDOWNS BUILDING — 5 PULLDOWNS','',
   [['MON','day-low'],['TUE','day-high'],['WED','day-off'],['THU','day-low'],['FRI','day-high']],
-  T('throw_light_feel','Light plyo · to feel')+T('throw_high_5pd','High plyo · 200+ · 5 pulldowns','#131313')+O+T('throw_light_catch','Light catch')+T('throw_high_5pd','High plyo · 200+ · 5 pulldowns'),
+  T('plyo_light_feel','Light plyo · to feel')+T('plyo_high_5pd','High plyo · 200+ · 5 pulldowns','#131313')+O+T('plyo_light_catch','Light catch')+T('plyo_high_5pd','High plyo · 200+ · 5 pulldowns'),
   L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
   A('pt_a','Post A')+A('pt_b','Post B')+O+O+A('pt_c','Post C')
 );
 const p2w8=W(8,'DELOAD — HONOR THE WEEK','Deload Week',
   [['MON','day-med'],['TUE','day-low'],['WED','day-low'],['THU','day-med'],['FRI','day-med']],
-  T('throw_deload','Med plyo · 90ft light catch')+T('throw_deload','Light plyo · 90ft','#131313')+T('throw_deload','Light plyo · 90ft')+T('throw_deload','Med plyo · light long toss','#131313')+T('throw_deload','Med plyo · light long toss'),
+  T('plyo_deload','Med plyo · 90ft light catch')+T('plyo_deload','Light plyo · 90ft','#131313')+T('plyo_deload','Light plyo · 90ft')+T('plyo_deload','Med plyo · light long toss','#131313')+T('plyo_deload','Med plyo · light long toss'),
   L('p2_mon','Lower A')+L('p2_tue','Upper A')+O+L('p2_thu','Lower B')+L('p2_fri','Upper C'),
   A('pt_a','Post A')+A('pt_b','Post B')+A('pt_c','Post C')+O+A('pt_c','Post C')
 );
