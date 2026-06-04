@@ -136,6 +136,7 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 .simple-list li{font-size:12px;color:var(--off-white);padding:4px 0 4px 14px;border-bottom:1px solid #1c1c1c;line-height:1.4;position:relative}
 .simple-list li::before{content:"·";position:absolute;left:0;color:var(--green);font-weight:900}
 .simple-list li:last-child{border-bottom:none}
+.ball-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:3px;vertical-align:middle;flex-shrink:0}
 @media(max-width:700px){
   .site-header{padding:12px 20px}.hero{padding:24px 20px 20px}.hero-title{font-size:32px}
   .section{padding:20px}.goals-grid,.focus-grid{grid-template-columns:1fr}
@@ -329,6 +330,10 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 </footer>
 
 <script>
+function bdot(color){
+  const m={green:'#5DC226',red:'#c0392b',blue:'#1a6abf',yellow:'#c8960a',grey:'#888'};
+  return `<span class="ball-dot" style="background:${m[color]||color}"></span>`;
+}
 function ex(name,sets,cues,arm=false){
   return `<div class="ex-card${arm?' arm-card':''}"><div class="ex-card-header" onclick="this.closest('.ex-card').classList.toggle('open')"><span class="ex-name">${name}</span><span class="ex-sets">${sets}</span><span class="ex-expand">&#9662;</span></div><div class="ex-details"><div class="cue-label">Coaching Cues</div>${cues.map(c=>`<div class="cue-item">${c}</div>`).join('')}</div></div>`;
 }
